@@ -40,6 +40,9 @@ body {
     left: 50%;
     position: fixed;
     top: 50%;
-    z-index: 99999; 
+    z-index: 99999;
 }
 
+.form-container{
+  margin-top: 60px;
+}
