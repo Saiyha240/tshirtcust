@@ -41,7 +41,7 @@
     </ul>
 
     <ul class="nav navbar-nav navbar-right">
-      <li><a href="/register"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+      <li><a href="/signup"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
           <li><a href="#" id="loginButton" data-selector="#login-dialog" class="dialog-link"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
     </ul>
   </div>
@@ -90,7 +90,7 @@
                         <li><span class="fa fa-check text-success"></span> Get a gift <small>(only new customers)</small></li>
                         <li><a href="/read-more/"><u>Read more</u></a></li>
                     </ul>
-                    <p><a href="/register/" class="btn btn-info btn-block">Yes please, register now!</a></p>
+                    <p><a href="/signup/" class="btn btn-info btn-block">Yes please, register now!</a></p>
                 </div>
             </div>
         </div>

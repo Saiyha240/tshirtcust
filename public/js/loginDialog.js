@@ -7,7 +7,6 @@ $(document).ready(function() {
             'margin-top' : -($(dialog_id).height() + 4) / 2,
             'margin-left' : -($(dialog_id).width() + 4) / 2
         });
-        $('body').removeClass('modal-open');
         return false;
     });
 });
