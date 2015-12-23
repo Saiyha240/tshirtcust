@@ -22,7 +22,7 @@ Route::get('/', function () {
   Displays Shirt Creation Page
 */
 Route::get('/create', function () {
-    return view('layouts/baselayout');
+    return view('create');
 });
 
 /*

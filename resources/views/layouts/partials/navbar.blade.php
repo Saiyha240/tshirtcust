@@ -12,7 +12,7 @@
         <a href="/create">Create</a>
       </li>
       <li>
-        <a href="#">Link</a>
+        <a href="/test">Link</a>
       </li>
       <li class="dropdown">
          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown<strong class="caret"></strong></a>
@@ -96,5 +96,3 @@
         </div>
     </div>
 </div>
-{!! HTML::script('js/jquery.min.js') !!}
-{!! HTML::script('js/loginDialog.js') !!}
