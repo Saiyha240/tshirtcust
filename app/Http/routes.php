@@ -11,6 +11,16 @@
 |
 */
 
+// Authentication routes...
+Route::group(['prefix' => 'auth'], function(){
+    Route::get('login', 'Auth\AuthController@getLogin');
+    Route::post('login', 'Auth\AuthController@postLogin');
+    Route::get('logout', 'Auth\AuthController@getLogout');
+
+    Route::get('register', ['as' => 'getRegister', 'uses' => 'Auth\AuthController@getRegister']);
+    Route::post('register', ['as' => 'postRegister', 'uses' => 'Auth\AuthController@postRegister']);
+});
+
 /*
   Displays Home Page
 */
@@ -25,23 +35,3 @@ Route::get('/create', function () {
     return view('create');
 });
 
-/*
-  Registration page
-*/
-Route::get('/signup', function () {
-    return view('signup');
-});
-
-/*
-  Displays Empty Layout
-*/
-Route::get('/blank', function () {
-    return view('layouts/baselayout');
-});
-
-/*
-  For testing purposes
-*/
-Route::get('/test', function () {
-    return view('test');
-});
