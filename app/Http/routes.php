@@ -13,9 +13,9 @@
 
 // Authentication routes...
 Route::group(['prefix' => 'auth'], function(){
-    Route::get('login', 'Auth\AuthController@getLogin');
-    Route::post('login', 'Auth\AuthController@postLogin');
-    Route::get('logout', 'Auth\AuthController@getLogout');
+    Route::get('login', ['as' => 'getLogin', 'uses' => 'Auth\AuthController@getLogin']);
+    Route::post('login', ['as' => 'postLogin', 'uses' => 'Auth\AuthController@postLogin']);
+    Route::get('logout', ['as' => 'getLogout', 'uses' => 'Auth\AuthController@getLogout']);
 
     Route::get('register', ['as' => 'getRegister', 'uses' => 'Auth\AuthController@getRegister']);
     Route::post('register', ['as' => 'postRegister', 'uses' => 'Auth\AuthController@postRegister']);
@@ -31,7 +31,7 @@ Route::get('/', function () {
 /*
   Displays Shirt Creation Page
 */
-Route::get('/create', function () {
+Route::get('/create', ['as' => 'getCreate', 'middleware' => 'auth', function () {
     return view('create');
-});
+}]);
 
