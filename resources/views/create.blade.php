@@ -80,7 +80,7 @@
 					</div>
 				</div>
 				<div class="col-md-6">
-					<div align="center" style="min-height: 32px;">
+					<div align="center" style="min-height: 40px;">
 						<div class="clearfix">
 							<div class="btn-group inline pull-left" id="texteditor" style="display:none">
 								<button id="font-family" class="btn btn-default dropdown-toggle" data-toggle="dropdown" title="Font Style"><i class="glyphicon glyphicon-font" style="width:19px;height:19px;"></i></button>
@@ -100,7 +100,7 @@
 									<li><a tabindex="-1" href="#" onclick="setFont('Plaster');" class="Plaster">Plaster</a></li>
 									<li><a tabindex="-1" href="#" onclick="setFont('Engagement');" class="Engagement">Engagement</a></li>
 								</ul>
-								<button id="text-bold" class="btn btn-default" data-original-title="Bold"></button>
+								<button id="text-bold" class="btn btn-default" data-original-title="Bold"><i class="glyphicon glyphicon-bold" ></i></button>
 								<button id="text-italic" class="btn btn-default" data-original-title="Italic"><i class="glyphicon glyphicon-italic" ></i></button>
 								<button id="text-underline" class="btn btn-default" title="Underline" style=""><i class="glyphicon glyphicon-text-color"></i></button>
 								<button id="text-strike" class="btn btn-default" title="Strike" style=""><img src="img/font_strikethrough.png" height="23px" width="23px" ></button>
@@ -120,18 +120,15 @@
 					</div>
 					<!--	EDITOR      -->
 					<div id="shirtDiv" class="page" style="width: 530px; height: 630px; position: relative; background-color: rgb(255, 255, 255);">
-						<img id="tshirtFacing" src="img/crew_front.png"></img>
-						<div id="drawingArea" style="position: absolute;top: 100px;left: 160px;z-index: 10;width: 200px;height: 400px;">
-							<canvas id="tcanvas" width=200 height="400" class="hover" style="-webkit-user-select: none;"></canvas>
+						<div id="drawingArea" style="z-index: 10;width: 530px;height: 630px;">
+							<canvas id="tcanvas" width="530" height="630" class="hover" style="-webkit-user-select: none;"></canvas>
 						</div>
 					</div>
 				</div>
 				<div class="col-md-2">
 					<!-- TO DO for submission of form -->
-					<!-- <form id="shirtForm"> -->
 						<input type="hidden" id="canvasData" name="canvasData"/>
 						<button id="proceed-to-payment" class="btn btn-lg btn-primary" name="proceed-to-payment-button" title"Proceed to payment">Proceed to payment</button>
-					<!-- </form> -->
 				</div>
 			</div>
 		</section>

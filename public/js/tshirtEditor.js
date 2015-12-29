@@ -2,10 +2,6 @@ var canvas;
 var tshirts = new Array(); //prototype: [{style:'x',color:'white',front:'a',back:'b',price:{tshirt:'12.95',frontPrint:'4.99',backPrint:'4.99',total:'22.47'}}]
 var a;
 var b;
-var line1;
-var line2;
-var line3;
-var line4;
  	$(document).ready(function() {
 		//setup front side canvas
  		canvas = new fabric.Canvas('tcanvas', {
@@ -13,6 +9,8 @@ var line4;
 		  selection: true,
 		  selectionBorderColor:'blue'
 		});
+    loadShirt('img/crew_front.png');
+
  		canvas.on({
 			 'object:moving': function(e) {
 			    e.target.opacity = 0.5;
@@ -55,24 +53,22 @@ var line4;
 		});
 
     $("#shirtTypes").change(function(e){
-      // debugger;
       if($(this).val() == "1"){
-        $("#tshirtFacing")[0].src = "img/crew_front.png";
+        loadShirt('img/crew_front.png');
       }
       else if ($(this).val() == "2"){
-        $("#tshirtFacing")[0].src = "img/womens_crew_front.png";
+        loadShirt('img/womens_crew_front.png');
       }
       else if ($(this).val() == "3"){
-        $("#tshirtFacing")[0].src = "img/mens_longsleeve_front.png";
+        loadShirt('img/mens_longsleeve_front.png');
       }
       else if ($(this).val() == "4"){
-        $("#tshirtFacing")[0].src = "img/mens_hoodie_front.png";
+        loadShirt('img/mens_hoodie_front.png');
       }
       else if ($(this).val() == "5"){
-        $("#tshirtFacing")[0].src = "img/mens_tank_front.png";
+        loadShirt('img/mens_tank_front.png');
       }
     });
-
 
 		document.getElementById('add-text').onclick = function() {
 			var text = $("#text-string").val();
@@ -167,15 +163,12 @@ var line4;
 	  };
 
     // TO DO. Saving of the canvas data
-    var button = document.getElementById('proceed-to-payment');
-    button.addEventListener('click', function (e) {
-        var dataURL = canvas.toDataURL('png');
-        console.log("Button clicked");
+    document.getElementById('proceed-to-payment').onclick = function() {
+        var dataURL = canvas.toDataURL();
+        $("#canvasData").val(dataURL);
         console.log(dataURL);
-        button.href = dataURL;
-        button.download = "Shirt.png";
         window.location.href=dataURL; //Uncomment to get the data
-    });
+    };
 
 	  $("#text-bold").click(function() {
 		  var activeObject = canvas.getActiveObject();
@@ -280,34 +273,17 @@ var line4;
 			}
 		});
 
-		//canvas.add(new fabric.fabric.Object({hasBorders:true,hasControls:false,hasRotatingPoint:false,selectable:false,type:'rect'}));
-	   $("#drawingArea").hover(
-	        function() {
-	        	 canvas.add(line1);
-		         canvas.add(line2);
-		         canvas.add(line3);
-		         canvas.add(line4);
-		         canvas.renderAll();
-	        },
-	        function() {
-	        	 canvas.remove(line1);
-		         canvas.remove(line2);
-		         canvas.remove(line3);
-		         canvas.remove(line4);
-		         canvas.renderAll();
-	        }
-	    );
-
+    //SHIRT COLORS
 	   $('.color-preview').click(function(){
 		   var color = $(this).css("background-color");
-		   document.getElementById("shirtDiv").style.backgroundColor = color;
+       changeBackgroundColor(color);
 	   });
 
 	   $('#flip').click(
 		   function() {
 			   	if ($(this).attr("data-original-title") == "Show Back View") {
 			   		$(this).attr('data-original-title', 'Show Front View');
-			        $("#tshirtFacing").attr("src","img/crew_back.png");
+              loadShirt("img/crew_back.png");
 			        a = JSON.stringify(canvas);
 			        canvas.clear();
 			        try
@@ -320,7 +296,7 @@ var line4;
 
 			    } else {
 			    	$(this).attr('data-original-title', 'Show Back View');
-			    	$("#tshirtFacing").attr("src","img/crew_front.png");
+            loadShirt("img/crew_front.png");
 			    	b = JSON.stringify(canvas);
 			    	canvas.clear();
 			    	try
@@ -337,10 +313,6 @@ var line4;
 			    },200);
         });
 	   $(".clearfix button,a").tooltip();
-	   line1 = new fabric.Line([0,0,200,0], {"stroke":"#000000", "strokeWidth":1,hasBorders:false,hasControls:false,hasRotatingPoint:false,selectable:false});
-	   line2 = new fabric.Line([199,0,200,399], {"stroke":"#000000", "strokeWidth":1,hasBorders:false,hasControls:false,hasRotatingPoint:false,selectable:false});
-	   line3 = new fabric.Line([0,0,0,400], {"stroke":"#000000", "strokeWidth":1,hasBorders:false,hasControls:false,hasRotatingPoint:false,selectable:false});
-	   line4 = new fabric.Line([0,400,200,399], {"stroke":"#000000", "strokeWidth":1,hasBorders:false,hasControls:false,hasRotatingPoint:false,selectable:false});
 	 });//doc ready
 
 
@@ -366,11 +338,13 @@ var line4;
 	    	$("#imageeditor").css('display', 'block');
 	    }
 	  }
+
 	 function onSelectedCleared(e){
 		 $("#texteditor").css('display', 'none');
 		 $("#text-string").val("");
 		 $("#imageeditor").css('display', 'none');
 	 }
+
 	 function setFont(font){
 		  var activeObject = canvas.getActiveObject();
 	      if (activeObject && activeObject.type === 'text') {
@@ -378,6 +352,7 @@ var line4;
 	        canvas.renderAll();
 	      }
 	  }
+
 	 function removeWhite(){
 		  var activeObject = canvas.getActiveObject();
 		  if (activeObject && activeObject.type === 'image') {
@@ -385,3 +360,12 @@ var line4;
 			  activeObject.applyFilters(canvas.renderAll.bind(canvas));
 		  }
 	 }
+
+   function loadShirt(src){
+     canvas.setBackgroundImage(src, canvas.renderAll.bind(canvas));
+   }
+
+   function changeBackgroundColor(color){
+     canvas.backgroundColor = color;
+     canvas.renderAll();
+   }
