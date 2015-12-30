@@ -11,7 +11,7 @@
 |
 */
 
-// Authentication routes...
+
 Route::group(['prefix' => 'auth'], function(){
     Route::get('login', ['as' => 'getLogin', 'uses' => 'Auth\AuthController@getLogin']);
     Route::post('login', ['as' => 'postLogin', 'uses' => 'Auth\AuthController@postLogin']);
@@ -21,23 +21,13 @@ Route::group(['prefix' => 'auth'], function(){
     Route::post('register', ['as' => 'postRegister', 'uses' => 'Auth\AuthController@postRegister']);
 });
 
-/*
-  Displays Home Page
-*/
+Route::group(['prefix' => 'tshirt', 'middleware' => 'auth'], function(){
+    Route::get('create', ['as' => 'getTshirtCreate', 'uses' => 'TshirtController@create']);
+    Route::get('edit', ['as' => 'getTshirtEdit', 'uses' => 'TshirtController@edit']);
+});
+
 Route::get('/', function () {
     return view('index');
 });
 
-/*
-  Displays Shirt Creation Page
-*/
-Route::get('/create', ['as' => 'getCreate', 'middleware' => 'auth', function () {
-    return view('create');
-}]);
 
-/*
-  Displays Shirt Editor Page
-*/
-Route::get('/edit', ['as' => 'getEdit', 'middleware' => 'auth', function () {
-    return view('edit');
-}]);

@@ -23,7 +23,7 @@ class AuthController extends Controller
 
     use AuthenticatesAndRegistersUsers, ThrottlesLogins;
 
-    protected $redirectTo = '/create';
+    protected $redirectTo = '/tshirt/create';
     protected $username = 'username';
 
     /**

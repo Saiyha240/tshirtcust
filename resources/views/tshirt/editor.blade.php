@@ -22,7 +22,7 @@
         <button id="text-bold" class="btn btn-default" data-original-title="Bold"><i class="glyphicon glyphicon-bold" ></i></button>
         <button id="text-italic" class="btn btn-default" data-original-title="Italic"><i class="glyphicon glyphicon-italic" ></i></button>
         <button id="text-underline" class="btn btn-default" title="Underline" style=""><i class="glyphicon glyphicon-text-color"></i></button>
-        <button id="text-strike" class="btn btn-default" title="Strike" style=""><img src="img/font_strikethrough.png" height="23px" width="23px" ></button>
+        <button id="text-strike" class="btn btn-default" title="Strike" style=""><img src="{{ asset('img/font_strikethrough.png') }}" height="23px" width="23px" ></button>
         <a class="btn btn-default" href="#" rel="tooltip" data-placement="top" data-original-title="Font Color"><input type="hidden" id="text-fontcolor" class="color-picker" size="7" value="#000000"></a>
         <a class="btn btn-default" href="#" rel="tooltip" data-placement="top" data-original-title="Font Border Color"><input type="hidden" id="text-strokecolor" class="color-picker" size="7" value="#000000"></a>
         <!--- Background <input type="hidden" id="text-bgcolor" class="color-picker" size="7" value="#ffffff"> --->

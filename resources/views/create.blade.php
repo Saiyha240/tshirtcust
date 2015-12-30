@@ -1,4 +1,4 @@
-@extends('shirt.shirtMaster')
+@extends('tshirt.master')
 @section('rightpanel')
 		<div class="col-md-2">
 			<!-- TO DO for submission of form -->

@@ -1,10 +1,11 @@
+var baseDir = "http://tshirtcust.com/"
 var canvas;
 var tshirts = new Array(); //prototype: [{style:'x',color:'white',front:'a',back:'b',price:{tshirt:'12.95',frontPrint:'4.99',backPrint:'4.99',total:'22.47'}}]
 var a;
 var b;
 //Sample JSON data. To be replaced by json data from existing one
-// var json = ''; //Uncomment to use new shirt
-var json = '{"objects":[{"type":"image","left":228,"top":326,"width":96,"height":96,"fill":"rgb(0,0,0)","overlayFill":null,"stroke":null,"strokeWidth":1,"strokeDashArray":null,"scaleX":1,"scaleY":1,"angle":0,"flipX":false,"flipY":false,"opacity":1,"selectable":true,"hasControls":true,"hasBorders":true,"hasRotatingPoint":true,"transparentCorners":true,"perPixelTargetFind":false,"src":"http://tshirt.local/img/invisibleman.jpg","filters":[]}],"background":"rgb(127, 255, 0)","backgroundImage":"http://tshirt.local/img/crew_front.png","backgroundImageOpacity":1,"backgroundImageStretch":true}'
+// var json = ''; //Uncomment to use new tshirt
+var json = '{"objects":[{"type":"image","left":228,"top":326,"width":96,"height":96,"fill":"rgb(0,0,0)","overlayFill":null,"stroke":null,"strokeWidth":1,"strokeDashArray":null,"scaleX":1,"scaleY":1,"angle":0,"flipX":false,"flipY":false,"opacity":1,"selectable":true,"hasControls":true,"hasBorders":true,"hasRotatingPoint":true,"transparentCorners":true,"perPixelTargetFind":false,"src":"' + baseDir + '/img/invisibleman.jpg","filters":[]}],"background":"rgb(127, 255, 0)","backgroundImage":"http://tshirtcust.com/img/crew_front.png","backgroundImageOpacity":1,"backgroundImageStretch":true}'
 
   $(document).ready(function() {
 		//setup front side canvas
@@ -14,7 +15,7 @@ var json = '{"objects":[{"type":"image","left":228,"top":326,"width":96,"height"
 		  selectionBorderColor:'blue'
 		});
 
-    //Load shirt or edit shirt
+    //Load tshirt or edit tshirt
     loadShirt('img/crew_front.png');
     //Temporary loader of edit section. Will remove after new year.
     if (window.location.href.indexOf("/edit") > -1){
@@ -360,7 +361,7 @@ var json = '{"objects":[{"type":"image","left":228,"top":326,"width":96,"height"
 	 }
 
    function loadShirt(src){
-     canvas.setBackgroundImage(src, canvas.renderAll.bind(canvas));
+     canvas.setBackgroundImage(baseDir + src, canvas.renderAll.bind(canvas));
    }
 
    function changeBackgroundColor(color){
