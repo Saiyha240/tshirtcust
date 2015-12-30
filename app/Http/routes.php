@@ -35,3 +35,9 @@ Route::get('/create', ['as' => 'getCreate', 'middleware' => 'auth', function () 
     return view('create');
 }]);
 
+/*
+  Displays Shirt Editor Page
+*/
+Route::get('/edit', ['as' => 'getEdit', 'middleware' => 'auth', function () {
+    return view('edit');
+}]);

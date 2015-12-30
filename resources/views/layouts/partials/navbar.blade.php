@@ -12,7 +12,7 @@
         <a href="/create">Create</a>
       </li>
       <li>
-        <a href="/test">Link</a>
+        <a href="/edit">Temporary Edit Link</a>
       </li>
       <li class="dropdown">
          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown<strong class="caret"></strong></a>
