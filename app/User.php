@@ -39,6 +39,16 @@ class User extends Model implements AuthenticatableContract,
 
     public function tshirts()
     {
-        return $this->hasMany('Tshirt');
+        return $this->hasMany('App\Tshirt');
+    }
+
+    public function role()
+    {
+        return $this->belongsTo('App\Role');
+    }
+
+    public function isAdmin()
+    {
+        return $this->role->id == 1;
     }
 }
