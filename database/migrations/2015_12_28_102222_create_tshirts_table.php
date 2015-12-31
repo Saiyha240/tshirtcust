@@ -15,10 +15,12 @@ class CreateTshirtsTable extends Migration
         Schema::create('tshirts', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->unsigned();
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->string('name');
             $table->longText('data');
             $table->boolean('paid')->default(0);
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
