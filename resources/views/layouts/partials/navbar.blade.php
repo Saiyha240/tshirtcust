@@ -23,7 +23,7 @@
       <li><a href="{{ URL::route('getRegister') }}"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
       <li><a href="#" id="loginButton" data-selector="#login-dialog" class="dialog-link"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
     @else
-      <li><a href="{{ URL::route('getLogout') }}"><span class="glyphicon glyphicon-user"></span> Logout</a></li>
+      <li><a href="{{ URL::route('getLogout') }}"><span class="glyphicon glyphicon-user"></span> Logout {{ $user->username }}</a></li>
     @endif
     </ul>
   </div>

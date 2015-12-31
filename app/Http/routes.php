@@ -22,6 +22,7 @@ Route::group(['prefix' => 'auth'], function(){
 });
 
 Route::group(['prefix' => 'tshirt', 'middleware' => 'auth'], function(){
+    Route::get('/', ['as' => 'getTshirts', 'uses' => 'TshirtController@index']);
     Route::get('create', ['as' => 'getTshirtCreate', 'uses' => 'TshirtController@create']);
     Route::get('edit', ['as' => 'getTshirtEdit', 'uses' => 'TshirtController@edit']);
 });
