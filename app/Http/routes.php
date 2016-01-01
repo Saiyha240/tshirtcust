@@ -21,10 +21,9 @@ Route::group(['prefix' => 'auth'], function(){
     Route::post('register', ['as' => 'postRegister', 'uses' => 'Auth\AuthController@postRegister']);
 });
 
-Route::group(['prefix' => 'tshirt', 'middleware' => 'auth'], function(){
-    Route::get('/', ['as' => 'getTshirts', 'uses' => 'TshirtController@index']);
-    Route::get('create', ['as' => 'getTshirtCreate', 'uses' => 'TshirtController@create']);
-    Route::get('edit', ['as' => 'getTshirtEdit', 'uses' => 'TshirtController@edit']);
+Route::group(['middleware' => 'auth'], function(){
+    Route::resource('tshirt', 'TshirtController');
+    Route::post('tshirt/{tshirt}/pay', ['as' => 'tshirt.pay', 'uses' => 'TshirtController@pay']);
 });
 
 Route::get('/', function () {

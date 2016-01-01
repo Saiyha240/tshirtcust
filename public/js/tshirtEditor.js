@@ -19,7 +19,7 @@ var json = '{"objects":[{"type":"image","left":228,"top":326,"width":96,"height"
     loadShirt('img/crew_front.png');
     //Temporary loader of edit section. Will remove after new year.
     if (window.location.href.indexOf("/edit") > -1){
-      loadExistingData(json);
+      loadExistingData( $('input[name=canvas_data]').val() );
     }
 
  		canvas.on({
@@ -174,14 +174,15 @@ var json = '{"objects":[{"type":"image","left":228,"top":326,"width":96,"height"
 	  };
 
     // TO DO. Saving of the canvas data
-    document.getElementById('proceed-to-payment').onclick = function() {
-        var dataURL = canvas.toDataURL();
-        $("#canvasData").val(dataURL);
-        console.log("dataURL: "+dataURL);
-        console.log("JSONData: "+JSON.stringify(canvas));
-        alert(JSON.stringify(canvas));
-        window.location.href=dataURL; //Uncomment to get the data
-    };
+	  $("#save-tshirt").bind("click", function(e){
+		  e.preventDefault();
+
+		  var canvas_image = canvas.toDataURL();
+		  $( "#canvas_image" ).val( canvas_image );
+		  $( "#canvas_data" ).val( JSON.stringify( canvas ) );
+
+		  $(this).parents('form').submit();
+	  });
 
 	  $("#text-bold").click(function() {
 		  var activeObject = canvas.getActiveObject();

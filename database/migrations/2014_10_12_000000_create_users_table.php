@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('password', 60);
             $table->enum('gender', ['M', 'F']);
             $table->rememberToken();
+            $table->softDeletes();
             $table->timestamps();
 
             $table->foreign('role_id')->references('id')->on('roles');

@@ -15,9 +15,7 @@
 	<div class="container">
 		<section id="typography">
 			<div class="row">
-				@include('tshirt.controls')
-				@include('tshirt.editor')
-				@yield('rightpanel')
+				@yield('content')
 			</div>
 		</section>
 	</div><!-- /container -->

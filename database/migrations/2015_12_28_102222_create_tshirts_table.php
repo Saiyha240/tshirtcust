@@ -16,8 +16,10 @@ class CreateTshirtsTable extends Migration
             $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->string('name');
-            $table->longText('data');
+            $table->longText('canvas_data');
+            $table->longText('canvas_image');
             $table->boolean('paid')->default(0);
+            $table->softDeletes();
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users');

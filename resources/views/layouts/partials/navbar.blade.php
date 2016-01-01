@@ -10,10 +10,10 @@
     <ul class="nav navbar-nav">
       @if( !Auth::guest() )
         <li class="">
-          <a href="{{ URL::route('getTshirtCreate') }}">Create</a>
+          <a href="{{ URL::route('tshirt.create') }}">Create</a>
         </li>
         <li>
-          <a href="{{ URL::route('getTshirtEdit') }}">Temporary Edit Link</a>
+          <a href="{{ URL::route('tshirt.index') }}">List</a>
         </li>
       @endif
     </ul>
