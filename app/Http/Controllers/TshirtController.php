@@ -6,14 +6,15 @@ use App\Tshirt;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 
-use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Mockery\CountValidator\Exception;
 
+
 class TshirtController extends Controller
 {
+    use PaypalHandler;
 
     public function __construct()
     {
@@ -137,12 +138,11 @@ class TshirtController extends Controller
 
     public function pay($id)
     {
-        $tshirt = Tshirt::find($id);
+        return $this->makePayment($id);
+    }
 
-        $tshirt->paid = true;
-
-        $tshirt->save();
-
-        return Redirect::route('tshirt.index');
+    public function status(Request $request, $id)
+    {
+        return $this->executePayment($request, $id);
     }
 }

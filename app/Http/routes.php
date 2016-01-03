@@ -22,8 +22,9 @@ Route::group(['prefix' => 'auth'], function(){
 });
 
 Route::group(['middleware' => 'auth'], function(){
-    Route::resource('tshirt', 'TshirtController');
     Route::post('tshirt/{tshirt}/pay', ['as' => 'tshirt.pay', 'uses' => 'TshirtController@pay']);
+    Route::get('tshirt/{tshirt}/status', ['as' => 'tshirt.status', 'uses' => 'TshirtController@status']);
+    Route::resource('tshirt', 'TshirtController');
 });
 
 Route::get('/', function () {

@@ -10,12 +10,13 @@ class Tshirt extends Model
     use SoftDeletes;
 
     protected $casts = [
-        'paid' => 'boolean'
+        'paid' => 'boolean',
+        'payment_data' => 'object'
     ];
 
     protected $dates = [ 'deleted_at' ];
 
-    protected $fillable = ['user_id', 'name', 'canvas_data', 'canvas_image'];
+    protected $fillable = ['name', 'canvas_data', 'canvas_image'];
     
     public function users()
     {
