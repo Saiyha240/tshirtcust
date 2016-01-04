@@ -8,11 +8,11 @@
       <div class="tab-pane active" id="tab1">
         <div class="well">
           <select id="shirtTypes">
-            <option value="1" selected="selected">Men Sleeve Shirts</option>
-            <option value="2">Women Short Sleeve Shirts</option>
-            <option value="3">Long Sleeve Shirts</option>
-            <option value="4">Hoodies</option>
-            <option value="5">Tank tops</option>
+            <option value="0" selected="selected">Men Sleeve Shirts</option>
+            <option value="1">Women Short Sleeve Shirts</option>
+            <option value="2">Long Sleeve Shirts</option>
+            <option value="3">Hoodies</option>
+            <option value="4">Tank tops</option>
           </select>
         </div>
         <div class="well">

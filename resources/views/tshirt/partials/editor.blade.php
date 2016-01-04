@@ -31,9 +31,11 @@
         <div class="btn-group">
           <button class="btn btn-default" id="bring-to-front" title="Bring to Front"><i class="glyphicon glyphicon-circle-arrow-up" style="height:19px;"></i></button>
           <button class="btn btn-default" id="send-to-back" title="Send to Back"><i class="glyphicon glyphicon-circle-arrow-down" style="height:19px;"></i></button>
-          <button id="flip" type="button" class="btn btn-default" title="Show Back View"><i class="glyphicon glyphicon-retweet" style="height:19px;"></i></button>
           <button id="remove-selected" class="btn btn-default" title="Delete selected item"><i class="glyphicon glyphicon-trash" style="height:19px;"></i></button>
         </div>
+      </div>
+      <div class="pull-right">
+        <button id="flip" type="button" class="btn btn-default" title="Show Back View"><i class="glyphicon glyphicon-retweet" style="height:19px;"></i></button>
       </div>
     </div>
   </div>

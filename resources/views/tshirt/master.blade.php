@@ -8,7 +8,7 @@
 	{!! HTML::script('https://code.jquery.com/jquery-1.11.3.min.js') !!}
 	{!! HTML::script('js/fabric.js') !!}
 	{!! HTML::script('js/tshirtEditor.js') !!}
-	{!! HTML::script('js/jquery.miniColors.min.js') !!}
+	{!! HTML::script('js/jquery.minicolors.min.js') !!}
 </head>
 <body>
 	@include('layouts.partials.navbar')
