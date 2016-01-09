@@ -25,7 +25,7 @@
         <button id="text-strike" class="btn btn-default" title="Strike" style=""><img src="{{ asset('img/font_strikethrough.png') }}" height="23px" width="23px" ></button>
         <a class="btn btn-default" href="#" rel="tooltip" data-placement="top" data-original-title="Font Color"><input type="hidden" id="text-fontcolor" class="color-picker" size="7" value="#000000"></a>
         <a class="btn btn-default" href="#" rel="tooltip" data-placement="top" data-original-title="Font Border Color"><input type="hidden" id="text-strokecolor" class="color-picker" size="7" value="#000000"></a>
-        <!--- Background <input type="hidden" id="text-bgcolor" class="color-picker" size="7" value="#ffffff"> --->
+        <!-- Background <input type="hidden" id="text-bgcolor" class="color-picker" size="7" value="#ffffff"> -->
       </div>
       <div class="pull-right" align="" id="imageeditor" style="display:none">
         <div class="btn-group">

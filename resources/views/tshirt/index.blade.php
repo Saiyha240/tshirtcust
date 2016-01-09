@@ -12,6 +12,7 @@
                 <td>#</td>
                 <td>Name</td>
                 <td>Paid</td>
+                <td>Status</td>
                 <td>Remove</td>
             </tr>
         </thead>
@@ -30,6 +31,9 @@
                         @else
                             <h4><span class="label label-success">Paid</span></h4>
                         @endif
+                    </td>
+                    <td>
+                        <!-- Insert status data here -->
                     </td>
                     <td>
                         {!! Form::open(['route' => ['tshirt.destroy', $tshirt->id], 'method' => 'delete']) !!}

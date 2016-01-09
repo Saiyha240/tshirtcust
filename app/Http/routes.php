@@ -34,3 +34,14 @@ Route::get('/', function () {
 Route::get('/payment', function () {
     return view('payment/payment');
 });
+
+Route::group(['middleware' => 'auth'], function(){
+    Route::get('/admin', function () {return view('admin/dashboard');});
+    Route::get('admin/dashboard', function () {return view('admin/dashboard');});
+    Route::get('admin/orders', function () {return view('admin/orders');});
+    Route::get('admin/reports', function () {return view('admin/reports');});
+    Route::get('admin/users', function () {return view('admin/users');});
+    Route::get('admin/shirts', function () {return view('admin/shirts');});
+    Route::get('admin/layouts', function () {return view('admin/layouts');});
+    Route::get('admin/images', function () {return view('admin/images');});
+});
