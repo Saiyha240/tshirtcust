@@ -31,4 +31,6 @@ Route::get('/', function () {
     return view('index');
 });
 
-
+Route::get('/payment', function () {
+    return view('payment/payment');
+});
