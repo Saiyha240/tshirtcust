@@ -5,7 +5,7 @@
     @include('tshirt.partials.editor')
     <div class="col-md-2">
         <!-- TO DO for submission of form -->
-        {!! Form::open(['route' => ['tshirt.update', $tshirt->id], 'method' => 'put']) !!}
+        {!! Form::open(['route' => ['tshirts.update', $tshirt->id], 'method' => 'put']) !!}
             {!! Form::text('name', $tshirt->name, ['class' => 'form-control']) !!}
             {!! Form::hidden('canvas_data', $tshirt->canvas_data, ['id' => 'canvas_data']) !!}
             {!! Form::hidden('canvas_image', null, ['id' => 'canvas_image']) !!}

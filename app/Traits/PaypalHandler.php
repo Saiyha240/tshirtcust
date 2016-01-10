@@ -67,8 +67,8 @@ trait PaypalHandler
 		            ->setDescription( 'Item Descriptionzzzz' );
 
 		$redirect_urls = new RedirectUrls();
-		$redirect_urls  ->setReturnUrl( URL::route('tshirt.status', [$id]) )
-		                ->setCancelUrl( URL::route('tshirt.status', [$id]) );
+		$redirect_urls  ->setReturnUrl( URL::route('tshirts.status', [$id]) )
+		                ->setCancelUrl( URL::route('tshirts.status', [$id]) );
 
 		$payment = new Payment();
 		$payment->setIntent('Sale')
@@ -103,7 +103,7 @@ trait PaypalHandler
 			return Redirect::away($redirect_url);
 		}
 
-		return Redirect::route('tshirt.index')
+		return Redirect::route('tshirts.index')
 		               ->with('f_message', 'Problem creating payment')
 		               ->with('f_type', 'alert-danger');
 	}
@@ -118,7 +118,7 @@ trait PaypalHandler
 
 		if( empty( $request->PayerID ) || empty( $request->token ) )
 		{
-			return Redirect::route('tshirt.index')
+			return Redirect::route('tshirts.index')
 			               ->with('f_message', 'Payer cancelled payment')
 			               ->with('f_type', 'alert-danger');
 		}
@@ -139,12 +139,12 @@ trait PaypalHandler
 
 			$tshirt->save();
 
-			return Redirect::route('tshirt.index')
+			return Redirect::route('tshirts.index')
 			               ->with('f_message', 'Payment Success!')
 			               ->with('f_type', 'alert-success');
 		}
 
-		return Redirect::route('tshirt.index')
+		return Redirect::route('tshirts.index')
 		               ->with('f_message', 'Payment Failed!')
 		               ->with('f_type', 'alert-danger');
 	}

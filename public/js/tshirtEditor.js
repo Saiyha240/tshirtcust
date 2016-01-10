@@ -1,4 +1,4 @@
-var baseDir = "http://tshirt.local/"
+var baseDir = "http://tshirtcust.com/"
 var canvas;
 var backView_canvas;
 var a;

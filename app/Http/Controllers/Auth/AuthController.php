@@ -7,6 +7,7 @@ use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
@@ -23,7 +24,7 @@ class AuthController extends Controller
 
     use AuthenticatesAndRegistersUsers, ThrottlesLogins;
 
-    protected $redirectTo = '/tshirt';
+    protected $redirectTo = '/tshirts';
     protected $username = 'username';
 
     /**
@@ -66,5 +67,15 @@ class AuthController extends Controller
             'gender' => $data['gender'],
             'password' => bcrypt($data['password']),
         ]);
+    }
+
+    public function redirectPath()
+    {
+        // Logic that determines where to send the user
+        if ( Auth::user()->isAdmin() ) {
+            return '/dashboard';
+        }
+
+        return '/tshirts';
     }
 }

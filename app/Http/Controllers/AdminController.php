@@ -2,14 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
 
-use App\User;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Redirect;
 
-class UserController extends Controller
+class AdminController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -62,10 +61,6 @@ class UserController extends Controller
     public function edit($id)
     {
         //
-        $user = User::find($id);
-
-        return view('user.edit')
-                ->with('user', $user);
     }
 
     /**
@@ -78,13 +73,6 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $user = User::find($id);
-
-        $user->update($request->all());
-
-        return Redirect::action('AdminController@users')
-                            ->with('f_message', 'Successfully udpated user ' . $user->username)
-                            ->with('f_type', 'alert-success');
     }
 
     /**
@@ -96,13 +84,41 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
-        $user = User::find($id);
+    }
 
-        if( User::destroy($id) > 0 )
-        {
-            return Redirect::action("AdminController@users")
-                            ->with('f_message', 'Successfully deleted user ' . $user->username)
-                            ->with('f_type', 'alert-success');
-        }
+    public function dashboard()
+    {
+        return view('admin.dashboard');
+    }
+
+    public function orders()
+    {
+        return view('admin.orders');
+    }
+
+    public function reports()
+    {
+        return view('admin.reports');
+    }
+
+    public function users()
+    {
+        return view('admin.users')
+	            ->with('users', User::users()->get());
+    }
+
+    public function shirts()
+    {
+        return view('admin.shirts');
+    }
+
+    public function layouts()
+    {
+        return view('admin.layouts');
+    }
+
+    public function images()
+    {
+        return view('admin.images');
     }
 }

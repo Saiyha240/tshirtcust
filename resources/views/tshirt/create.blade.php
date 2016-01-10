@@ -6,7 +6,7 @@
 
     <div class="col-md-2">
         <!-- TO DO for submission of form -->
-        {!! Form::open(['route' => 'tshirt.store']) !!}
+        {!! Form::open(['route' => 'tshirts.store']) !!}
             <div class="form-group">
                 {!! Form::text('name', null, ['class' => 'form-control', 'required']) !!}
             </div>

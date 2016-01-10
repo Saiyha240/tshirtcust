@@ -1,4 +1,4 @@
-@extends('admin.admin')
+@extends('layouts.admin')
 
 @section('content')
     <h1>Shirts</h1>

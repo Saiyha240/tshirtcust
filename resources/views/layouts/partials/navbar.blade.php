@@ -11,12 +11,12 @@
       <ul class="nav navbar-nav">
         @if( !Auth::guest() )
           <li class="">
-            <a href="{{ URL::route('tshirt.create') }}">Create</a>
+            <a href="{{ URL::route('tshirts.create') }}">Create</a>
           </li>
           <li>
-            <a href="{{ URL::route('tshirt.index') }}">List</a>
+            <a href="{{ URL::route('tshirts.index') }}">List</a>
           </li>
-          <!-- If admin -->
+          @if( Auth::user()->isAdmin() )
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Administration <span class="caret"></span></a>
             <ul class="dropdown-menu">
@@ -30,6 +30,7 @@
               <li><a href="../admin/images">Images</a></li>
             </ul>
           </li>
+          @endif
         @endif
       </ul>
 

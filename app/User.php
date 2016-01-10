@@ -31,7 +31,7 @@ class User extends Model implements AuthenticatableContract,
      *
      * @var array
      */
-    protected $fillable = ['username', 'email', 'password', 'gender'];
+    protected $fillable = ['username', 'email', 'password', 'gender', 'contact_number'];
 
     /**
      * The attributes excluded from the model's JSON form.
@@ -54,4 +54,9 @@ class User extends Model implements AuthenticatableContract,
     {
         return $this->role->id == 1;
     }
+
+	public function scopeUsers($query)
+	{
+		return $query->where('role_id', 2);
+	}
 }

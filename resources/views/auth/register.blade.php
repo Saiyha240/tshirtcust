@@ -3,9 +3,9 @@
 @section('content')
     <div class="container form-container">
         <div class="row">
-            <div class="center-block">
-                @include('auth.forms.registerForm')
-            </div>
+            {!! Form::open( array( 'route' => 'postRegister', 'class' => 'form-horizontal' ) ) !!}
+				@include('auth.forms.userDataForm', ['submitText' => 'Register Now'])
+			{!! Form::close() !!}
         </div>
     </div>
 @endsection

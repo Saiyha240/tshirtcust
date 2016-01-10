@@ -22,26 +22,29 @@ Route::group(['prefix' => 'auth'], function(){
 });
 
 Route::group(['middleware' => 'auth'], function(){
-    Route::post('tshirt/{tshirt}/pay', ['as' => 'tshirt.pay', 'uses' => 'TshirtController@pay']);
-    Route::get('tshirt/{tshirt}/status', ['as' => 'tshirt.status', 'uses' => 'TshirtController@status']);
-    Route::resource('tshirt', 'TshirtController');
+    Route::post('tshirts/{tshirt}/pay', ['as' => 'tshirts.pay', 'uses' => 'TshirtController@pay']);
+    Route::get('tshirts/{tshirt}/status', ['as' => 'tshirts.status', 'uses' => 'TshirtController@status']);
+    Route::resource('tshirts', 'TshirtController');
+
+	Route::group(['prefix' => 'admin', 'middleware' => 'roles'], function(){
+		Route::get('/', ['as' => 'admin.index', 'uses' => 'AdminController@index']);
+		Route::get('dashboard', ['as' => 'admin.dashboard', 'uses' => 'AdminController@dashboard']);
+		Route::get('orders', ['as' => 'admin.orders', 'uses' => 'AdminController@orders']);
+		Route::get('reports', ['as' => 'admin.reports', 'uses' => 'AdminController@reports']);
+		Route::get('users', ['as' => 'admin.users', 'uses' => 'AdminController@users']);
+		Route::get('shirts', ['as' => 'admin.shirts', 'uses' => 'AdminController@shirts']);
+		Route::get('layouts', ['as' => 'admin.layouts', 'uses' => 'AdminController@layouts']);
+		Route::get('images', ['as' => 'admin.images', 'uses' => 'AdminController@images']);
+
+	});
+
+	Route::resource('users', 'UserController');
 });
 
 Route::get('/', function () {
-    return view('index');
+	return view('index');
 });
 
 Route::get('/payment', function () {
-    return view('payment/payment');
-});
-
-Route::group(['middleware' => 'auth'], function(){
-    Route::get('/admin', function () {return view('admin/dashboard');});
-    Route::get('admin/dashboard', function () {return view('admin/dashboard');});
-    Route::get('admin/orders', function () {return view('admin/orders');});
-    Route::get('admin/reports', function () {return view('admin/reports');});
-    Route::get('admin/users', function () {return view('admin/users');});
-    Route::get('admin/shirts', function () {return view('admin/shirts');});
-    Route::get('admin/layouts', function () {return view('admin/layouts');});
-    Route::get('admin/images', function () {return view('admin/images');});
+	return view('payment/payment');
 });
