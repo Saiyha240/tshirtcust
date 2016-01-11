@@ -1,8 +1,8 @@
-var baseDir = "http://tshirtcust.com/"
+var baseDir = window.location.protocol + "//" + window.location.host + "/";
 var canvas;
-var backView_canvas;
-var a;
-var b;
+var back_canvas;
+var tempFrontData;
+var tempBackData;
 //Sample shirts data
 var tshirts = [
   {"tshirt_id": '1',
@@ -99,7 +99,6 @@ $(document).ready(function() {
   * Controls section
   */
   $("#shirtTypes").change(function(e){
-    b = ''; //Temporary solution for flip bug
     if($(this).val() == "0"){
       loadShirt(tshirts[0].front_src);
     }
@@ -331,20 +330,20 @@ $(document).ready(function() {
       function() {
         var tshirtId = $("#shirtTypes").val();
         if ($(this).attr("data-original-title") == "Show Back View") {
-          $(this).attr('data-original-title', 'Show Front View');
+          disableItemsOnBackView();
           loadShirt(tshirts[tshirtId].back_src);
-          $("#shirtTypes").prop('disabled', true);
-          a = JSON.stringify(canvas);
+          tempFrontData = JSON.stringify(canvas);
+
           canvas.clear();
-          loadExistingData(b);
+          loadExistingData(checkBackgroundImage(tempBackData, tshirts[tshirtId]));
         } else {
-          $(this).attr('data-original-title', 'Show Back View');
+          enableItemsOnFrontView();
           loadShirt(tshirts[tshirtId].front_src);
-          $("#shirtTypes").prop('disabled', false);
-          backView_canvas = canvas;
-          b = JSON.stringify(canvas);
+          back_canvas = canvas;
+          tempBackData = JSON.stringify(canvas);
+
           canvas.clear();
-          loadExistingData(a);
+          loadExistingData(tempFrontData);
         }
         setTimeout(function() {
           canvas.calcOffset();
@@ -360,6 +359,10 @@ $(document).ready(function() {
       var canvas_image = canvas.toDataURL();
       $( "#canvas_image" ).val( canvas_image );
       $( "#canvas_data" ).val( JSON.stringify( canvas ) );
+      var back_canvas_image = back_canvas.toDataURL();
+      // TODO possible plain only, to check tom
+      $( "#back_canvas_image" ).val( back_canvas_image );
+      $( "#back_canvas_data" ).val( JSON.stringify( back_canvas ) );
 
       $(this).parents('form').submit();
     });
@@ -412,6 +415,20 @@ $(document).ready(function() {
     }
   }
 
+  /*
+  * Validates if backgroundImage is sync with what is loaded, returns the updated if not, else same.
+  */
+  function checkBackgroundImage(data, currentShirt){
+    if(data != undefined){
+      var obj = jQuery.parseJSON(data);
+      if(obj.backgroundImage.src.indexOf(currentShirt) == -1){
+        obj.backgroundImage.src = baseDir + currentShirt.back_src;
+        return JSON.stringify(obj);
+      }
+    }
+    return data;
+  }
+
   function loadShirt(src){
     canvas.setBackgroundImage(baseDir + src, canvas.renderAll.bind(canvas));
   }
@@ -422,7 +439,21 @@ $(document).ready(function() {
   }
 
   function loadExistingData(data){
-    if(data.length != 0 ){
+    if(data != undefined ){
       canvas.loadFromJSON(data, canvas.renderAll.bind(canvas));
     }
+  }
+
+  function disableItemsOnBackView(){
+    $('#flip').attr('data-original-title', 'Show Front View');
+    $("#shirtTypes").prop('disabled', true);
+    $("#save-tshirt").prop('disabled', true);
+    $("#save-tshirt").attr('title', 'Disabled when on back view. Rotate to save');
+  }
+
+  function enableItemsOnFrontView(){
+    $('#flip').attr('data-original-title', 'Show Back View');
+    $("#shirtTypes").prop('disabled', false);
+    $("#save-tshirt").prop('disabled', false);
+    $("#save-tshirt").attr('title', 'Create');
   }
