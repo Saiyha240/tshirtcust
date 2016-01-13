@@ -7,7 +7,7 @@
     <div class="tab-content">
       <div class="tab-pane active" id="tab1">
         <div class="well">
-          <select id="shirtTypes">
+          <select id="shirtTypes" class="btn btn-primary">
             <option value="0" selected="selected">Men Sleeve Shirts</option>
             <option value="1">Women Short Sleeve Shirts</option>
             <option value="2">Long Sleeve Shirts</option>
@@ -44,8 +44,9 @@
       </div>
       <div class="tab-pane" id="tab2">
         <div class="well">
-          <div class="input-append">
-            <input class="span2" id="text-string" type="text" placeholder="Add text here..."><button id="add-text" class="btn btn-sm btn-default" title="Add text"><i class="glyphicon glyphicon-share-alt"></i> Add text</button>
+          <div class="input-append form-inline form-group">
+            <input class="form-control" id="text-string" type="text" placeholder="Add text here...">
+            <button id="add-text" class="btn btn-default" title="Add text"><i class="glyphicon glyphicon-share-alt"></i> Add text</button>
             <hr>
           </div>
           <div id="avatarlist">

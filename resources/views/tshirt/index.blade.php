@@ -6,6 +6,8 @@
         <thead>
             <tr>
                 <td>#</td>
+                <td class="td-thumbnail">Front</td>
+                <td class="td-thumbnail">Back</td>
                 <td>Name</td>
                 <td>Paid</td>
                 <td>Status</td>
@@ -16,6 +18,12 @@
             @foreach( $tshirts as $tshirt )
                 <tr>
                     <td>{{ $tshirt->id }}</td>
+                    <td class="td-thumbnail" >
+                      <img src="{{ $tshirt->canvas_image }}" alt="..." class="img-responsive img-thumbnail">
+                    </td>
+                    <td class="td-thumbnail">
+                       <img src="img/plain.png" alt="..." class="img-responsive img-thumbnail">
+                    </td>
                     <td>
                         {!! HTML::linkRoute('tshirts.edit', $tshirt->name, ['id' => $tshirt->id]) !!}
                     </td>

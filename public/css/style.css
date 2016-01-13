@@ -193,3 +193,20 @@ body {
   text-align: right;
   margin-top: -10px;
 }
+
+/*Editor*/
+select.btn option{
+  background-color: white;
+  color: black;
+}
+
+/*Shirt list*/
+.td-thumbnail{
+  width: 150px;
+  text-align: center;
+}
+
+.img-thumbnail{
+  height: 120px;
+  width: 110px;
+}

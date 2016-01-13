@@ -356,11 +356,18 @@ $(document).ready(function() {
     $("#save-tshirt").bind("click", function(e){
       e.preventDefault();
 
-      var canvas_image = canvas.toDataURL();
-      $( "#canvas_image" ).val( canvas_image );
+      $( "#canvas_image" ).val( canvas.toDataURL() );
       $( "#canvas_data" ).val( JSON.stringify( canvas ) );
-      var back_canvas_image = back_canvas.toDataURL();
+
       // TODO possible plain only, to check tom
+      //Draft for back data
+      var back_canvas_image;
+      if(back_canvas != undefined){
+        back_canvas_image = back_canvas.toDataURL();
+      }
+      else{
+        back_canvas_image = "plain";
+      }
       $( "#back_canvas_image" ).val( back_canvas_image );
       $( "#back_canvas_data" ).val( JSON.stringify( back_canvas ) );
 
