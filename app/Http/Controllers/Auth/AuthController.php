@@ -73,7 +73,7 @@ class AuthController extends Controller
     {
         // Logic that determines where to send the user
         if ( Auth::user()->isAdmin() ) {
-            return '/dashboard';
+            return '/admin/dashboard';
         }
 
         return '/tshirts';

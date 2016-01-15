@@ -14,7 +14,7 @@ use Mockery\CountValidator\Exception;
 
 class TshirtController extends Controller
 {
-    use PaypalHandler;
+	use PaypalHandler;
 
     public function __construct()
     {

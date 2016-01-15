@@ -35,10 +35,12 @@ Route::group(['middleware' => 'auth'], function(){
 		Route::get('shirts', ['as' => 'admin.shirts', 'uses' => 'AdminController@shirts']);
 		Route::get('layouts', ['as' => 'admin.layouts', 'uses' => 'AdminController@layouts']);
 		Route::get('images', ['as' => 'admin.images', 'uses' => 'AdminController@images']);
-
+		Route::post('images/store', ['as' => 'admin.images.store', 'uses' => 'AdminController@store']);
 	});
 
 	Route::resource('users', 'UserController');
+
+	Route::resource('fileentries', 'FileEntryController');
 });
 
 Route::get('/', function () {
