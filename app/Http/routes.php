@@ -47,6 +47,7 @@ Route::get('/', function () {
 	return view('index');
 });
 
-Route::get('/payment', function () {
-	return view('payment/payment');
-});
+Route::post('cart/addItem/{tshirtId}', ['as' => 'cart.addItem', 'uses' => 'CartController@store']);
+Route::get('cart/removeItem/{tshirtId}', ['as' => 'cart.removeItem', 'uses' => 'CartController@destroy']);
+Route::get('/cart', ['as' => 'getCart', 'uses' => 'CartController@index']);
+Route::get('/cart', 'CartController@index');

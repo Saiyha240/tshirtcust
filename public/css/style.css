@@ -104,21 +104,22 @@ body {
 
 .item{
   position: relative;
-  height: 100px;
+  height: 120px;
   border-radius: 2px;
+  border-top: 1px solid #CCCCCC;
   background-color: ##f6f6f6;
   margin-bottom: 10px;
   box-shadow: 2px 2px 5px #CCCCCC;
 }
 .item img{
   float: left;
-  width: 30%;
-  height: 100px;
+  width: 25%;
+  height: 120px;
 }
 
 .details{
   float: left;
-  width: 40%;
+  width: 45%;
   height: 100px;
   padding: 10px;
   overflow: hidden;
@@ -152,12 +153,6 @@ body {
 
 #total{
   float: right;
-}
-
-#items{
-  border: 1px solid #eeeeee;
-  border-radius: 5px;
-  height: 500px;
 }
 
 /*Dashboard*/

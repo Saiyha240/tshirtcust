@@ -9,7 +9,7 @@
                 <td class="td-thumbnail">Front</td>
                 <td class="td-thumbnail">Back</td>
                 <td>Name</td>
-                <td>Paid</td>
+                <td>Add to cart</td>
                 <td>Status</td>
                 <td>Remove</td>
             </tr>
@@ -28,13 +28,9 @@
                         {!! HTML::linkRoute('tshirts.edit', $tshirt->name, ['id' => $tshirt->id]) !!}
                     </td>
                     <td>
-                        @if( !$tshirt->paid )
-                            {!! Form::open(['route' => ['tshirts.pay', $tshirt->id], 'class' => 'form-inline']) !!}
-                                {!! Form::submit('Pay', ['class'=>'btn btn-danger ']) !!}
-                            {!! Form::close() !!}
-                        @else
-                            <h4><span class="label label-success">Paid</span></h4>
-                        @endif
+                        {!! Form::open(['route' => ['cart.addItem', $tshirt->id], 'class' => 'form-inline']) !!}
+                            {!! Form::button('<i class="fa fa-cart-plus"></i> Add to Cart', ['class'=>'btn btn-danger', 'type'=>'submit']) !!}
+                        {!! Form::close() !!}
                     </td>
                     <td>
                         <!-- Insert status data here -->
