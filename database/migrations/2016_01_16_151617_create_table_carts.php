@@ -26,6 +26,6 @@ class CreateTableCarts extends Migration
      */
     public function down()
     {
-        Schema::drop('cart');
+        Schema::drop('carts');
     }
 }
