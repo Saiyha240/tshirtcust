@@ -54,7 +54,7 @@ class TshirtController extends Controller
         $tshirt = $request->user()->tshirts()->create($request->all());
         $tshirt->save();
 
-        return Redirect::route('tshirt.index');
+        return Redirect::action('TshirtController@index');
     }
 
     /**

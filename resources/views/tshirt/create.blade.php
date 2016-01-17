@@ -7,21 +7,7 @@
     <div class="col-md-2">
         <!-- TO DO for submission of form -->
         {!! Form::open(['route' => 'tshirts.store']) !!}
-            <div class="form-group">
-                {!! Form::text('name', null, ['class' => 'form-control', 'required']) !!}
-            </div>
-            {!! Form::hidden('canvas_data', null, ['id' => 'canvas_data']) !!}
-            {!! Form::hidden('canvas_image', null, ['id' => 'canvas_image']) !!}
-            {!! Form::hidden('back_canvas_data', null, ['id' => 'back_canvas_data']) !!}
-            {!! Form::hidden('back_canvas_image', null, ['id' => 'back_canvas_image']) !!}
-            {!! Form::submit('Create',
-                    [
-                        'id'        => 'save-tshirt',
-                        'class'     => 'btn btn-primary',
-                        'title'     => 'Create Tshirt'
-                    ]
-                )
-            !!}
+            @include('tshirt.forms.tshirtForm')
         {!! Form::close() !!}
     </div>
 @endsection

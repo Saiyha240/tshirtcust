@@ -87,7 +87,7 @@ $(document).ready(function() {
   * Load shirt from existing data if on edit page
   */
   if (window.location.href.indexOf("/edit") > -1){
-    loadExistingData( $('input[name=canvas_data]').val() );
+    loadExistingData( $('input[name=front_canvas_data]').val() );
   }
   else{
     loadShirt(defaultTshirt);
@@ -356,8 +356,10 @@ $(document).ready(function() {
     $("#save-tshirt").bind("click", function(e){
       e.preventDefault();
 
-      $( "#canvas_image" ).val( canvas.toDataURL() );
-      $( "#canvas_data" ).val( JSON.stringify( canvas ) );
+      $( "#front_canvas_image" ).val( canvas.toDataURL() );
+      $( "#front_canvas_data" ).val( JSON.stringify( canvas ) );
+      // console.log("FRONT CANVAS IMAGE: " + $( "#front_canvas_image" ).val());
+      // console.log("FRONT CANVAS DATA: " + $( "#front_canvas_data" ).val());
 
       // TODO possible plain only, to check tom
       //Draft for back data
@@ -370,6 +372,8 @@ $(document).ready(function() {
       }
       $( "#back_canvas_image" ).val( back_canvas_image );
       $( "#back_canvas_data" ).val( JSON.stringify( back_canvas ) );
+      // console.log("BACK CANVAS IMAGE: " + $( "#back_canvas_image" ).val());
+      // console.log("BACK CANVAS DATA: " + $( "#back_canvas_data" ).val());
 
       $(this).parents('form').submit();
     });
