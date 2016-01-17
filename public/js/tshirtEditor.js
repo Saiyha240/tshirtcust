@@ -337,9 +337,9 @@ $(document).ready(function() {
           canvas.clear();
           loadExistingData(checkBackgroundImage(tempBackData, tshirts[tshirtId]));
         } else {
+          back_canvas = jQuery.extend(true, {}, canvas);
           enableItemsOnFrontView();
           loadShirt(tshirts[tshirtId].front_src);
-          back_canvas = canvas;
           tempBackData = JSON.stringify(canvas);
 
           canvas.clear();
@@ -358,8 +358,8 @@ $(document).ready(function() {
 
       $( "#front_canvas_image" ).val( canvas.toDataURL() );
       $( "#front_canvas_data" ).val( JSON.stringify( canvas ) );
-      // console.log("FRONT CANVAS IMAGE: " + $( "#front_canvas_image" ).val());
-      // console.log("FRONT CANVAS DATA: " + $( "#front_canvas_data" ).val());
+      console.log("FRONT CANVAS IMAGE: " + $( "#front_canvas_image" ).val());
+      console.log("FRONT CANVAS DATA: " + $( "#front_canvas_data" ).val());
 
       // TODO possible plain only, to check tom
       //Draft for back data
@@ -372,8 +372,8 @@ $(document).ready(function() {
       }
       $( "#back_canvas_image" ).val( back_canvas_image );
       $( "#back_canvas_data" ).val( JSON.stringify( back_canvas ) );
-      // console.log("BACK CANVAS IMAGE: " + $( "#back_canvas_image" ).val());
-      // console.log("BACK CANVAS DATA: " + $( "#back_canvas_data" ).val());
+      console.log("BACK CANVAS IMAGE: " + $( "#back_canvas_image" ).val());
+      console.log("BACK CANVAS DATA: " + $( "#back_canvas_data" ).val());
 
       $(this).parents('form').submit();
     });

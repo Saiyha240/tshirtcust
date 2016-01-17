@@ -19,10 +19,14 @@
                 <tr>
                     <td>{{ $tshirt->id }}</td>
                     <td class="td-thumbnail" >
-                      <img src="{{ $tshirt->canvas_image }}" alt="..." class="img-responsive img-thumbnail">
+                      <img src="{{ $tshirt->front_canvas_image }}" alt="..." class="img-responsive img-thumbnail">
                     </td>
                     <td class="td-thumbnail">
-                       <img src="img/plain.png" alt="..." class="img-responsive img-thumbnail">
+                       <?php if(($tshirt->back_canvas_image) == "plain") : ?>
+                         <img src="../img/plain.png" alt="..." class="img-responsive img-thumbnail">
+                       <?php else : ?>
+                        <img src="{{ $tshirt->back_canvas_image }}" alt="..." class="img-responsive img-thumbnail">
+                       <?php endif; ?>
                     </td>
                     <td>
                         {!! HTML::linkRoute('tshirts.edit', $tshirt->name, ['id' => $tshirt->id]) !!}
