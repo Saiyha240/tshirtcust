@@ -47,6 +47,10 @@ Route::get('/', function () {
 	return view('index');
 });
 
+Route::get('/about', function () {
+	return view('about.about');
+});
+
 Route::post('cart/addItem/{tshirtId}', ['as' => 'cart.addItem', 'uses' => 'CartController@store']);
 Route::get('cart/removeItem/{tshirtId}', ['as' => 'cart.removeItem', 'uses' => 'CartController@destroy']);
 Route::get('/cart', ['as' => 'getCart', 'uses' => 'CartController@index']);
