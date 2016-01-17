@@ -14,7 +14,6 @@ use Mockery\CountValidator\Exception;
 
 class TshirtController extends Controller
 {
-	use PaypalHandler;
 
     public function __construct()
     {
@@ -136,13 +135,13 @@ class TshirtController extends Controller
 
     }
 
-    public function pay($id)
-    {
-        return $this->makePayment($id);
-    }
-
-    public function status(Request $request, $id)
-    {
-        return $this->executePayment($request, $id);
-    }
+//    public function pay($id)
+//    {
+//        return $this->makePayment($id);
+//    }
+//
+//    public function status(Request $request, $id)
+//    {
+//        return $this->executePayment($request, $id);
+//    }
 }

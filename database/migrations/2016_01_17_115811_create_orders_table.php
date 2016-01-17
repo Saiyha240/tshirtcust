@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTshirtsTable extends Migration
+class CreateOrdersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,15 +12,10 @@ class CreateTshirtsTable extends Migration
      */
     public function up()
     {
-        Schema::create('tshirts', function (Blueprint $table) {
+        Schema::create('orders', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->unsigned();
-            $table->string('name');
-            $table->longText('front_canvas_data');
-            $table->longText('front_canvas_image');
-            $table->longText('back_canvas_data');
-            $table->longText('back_canvas_image');
-            $table->softDeletes();
+            $table->longText('payment_data');
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users');
@@ -34,6 +29,6 @@ class CreateTshirtsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('tshirts');
+        Schema::drop('orders');
     }
 }

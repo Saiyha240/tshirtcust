@@ -22,8 +22,8 @@ Route::group(['prefix' => 'auth'], function(){
 });
 
 Route::group(['middleware' => 'auth'], function(){
-    Route::post('tshirts/{tshirt}/pay', ['as' => 'tshirts.pay', 'uses' => 'TshirtController@pay']);
-    Route::get('tshirts/{tshirt}/status', ['as' => 'tshirts.status', 'uses' => 'TshirtController@status']);
+//    Route::post('tshirts/{tshirt}/pay', ['as' => 'tshirts.pay', 'uses' => 'TshirtController@pay']);
+//    Route::get('tshirts/{tshirt}/status', ['as' => 'tshirts.status', 'uses' => 'TshirtController@status']);
     Route::resource('tshirts', 'TshirtController');
 
 	Route::group(['prefix' => 'admin', 'middleware' => 'roles'], function(){
@@ -50,4 +50,3 @@ Route::get('/', function () {
 Route::post('cart/addItem/{tshirtId}', ['as' => 'cart.addItem', 'uses' => 'CartController@store']);
 Route::get('cart/removeItem/{tshirtId}', ['as' => 'cart.removeItem', 'uses' => 'CartController@destroy']);
 Route::get('/cart', ['as' => 'getCart', 'uses' => 'CartController@index']);
-Route::get('/cart', 'CartController@index');

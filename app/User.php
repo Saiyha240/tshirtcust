@@ -20,13 +20,6 @@ class User extends Model implements AuthenticatableContract,
     protected $dates = [ 'deleted_at' ];
 
     /**
-     * The database table used by the model.
-     *
-     * @var string
-     */
-    protected $table = 'users';
-
-    /**
      * The attributes that are mass assignable.
      *
      * @var array
@@ -43,6 +36,11 @@ class User extends Model implements AuthenticatableContract,
     public function tshirts()
     {
         return $this->hasMany('App\Tshirt');
+    }
+
+    public function orders()
+    {
+        return $this->hasMany('App\Order');
     }
 
     public function role()

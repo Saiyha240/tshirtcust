@@ -14,9 +14,12 @@ class CreateTableCartsItem extends Migration
     {
         Schema::create('cart_items', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('cart_id');
-            $table->integer('tshirt_id');
+            $table->integer('cart_id')->unsigned();
+            $table->integer('tshirt_id')->unsigned();
             $table->timestamps();
+
+	        $table->foreign('cart_id')->references('id')->on('carts');
+	        $table->foreign('tshirt_id')->references('id')->on('tshirts');
         });
     }
 
