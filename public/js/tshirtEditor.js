@@ -1,6 +1,8 @@
 var baseDir = window.location.protocol + "//" + window.location.host + "/";
 var canvas;
 var back_canvas;
+var back_canvas_data;
+var back_canvas_image;
 var tempFrontData;
 var tempBackData;
 //Sample shirts data
@@ -88,6 +90,9 @@ $(document).ready(function() {
   */
   if (window.location.href.indexOf("/edit") > -1){
     loadExistingData( $('input[name=front_canvas_data]').val() );
+    tempBackData  = $('input[name=back_canvas_data]').val();
+    back_canvas_data = $('input[name=back_canvas_data]').val();
+    back_canvas_image = $('input[name=back_canvas_image]').val();
   }
   else{
     loadShirt(defaultTshirt);
@@ -335,7 +340,7 @@ $(document).ready(function() {
           tempFrontData = JSON.stringify(canvas);
 
           canvas.clear();
-          loadExistingData(checkBackgroundImage(tempBackData, tshirts[tshirtId]));
+          loadExistingData(checkBackgroundImage(tempBackData, tempFrontData));
         } else {
           back_canvas = jQuery.extend(true, {}, canvas);
           enableItemsOnFrontView();
@@ -355,25 +360,21 @@ $(document).ready(function() {
     */
     $("#save-tshirt").bind("click", function(e){
       e.preventDefault();
-
       $( "#front_canvas_image" ).val( canvas.toDataURL() );
       $( "#front_canvas_data" ).val( JSON.stringify( canvas ) );
-      console.log("FRONT CANVAS IMAGE: " + $( "#front_canvas_image" ).val());
-      console.log("FRONT CANVAS DATA: " + $( "#front_canvas_data" ).val());
 
-      // TODO possible plain only, to check tom
-      //Draft for back data
-      var back_canvas_image;
-      if(back_canvas != undefined){
+
+      if (back_canvas != undefined) {
         back_canvas_image = back_canvas.toDataURL();
+        back_canvas_data = JSON.stringify( back_canvas );
       }
-      else{
+      else if(back_canvas_image == undefined && back_canvas_data == undefined) {
         back_canvas_image = "plain";
+        back_canvas_data = "";
       }
+
       $( "#back_canvas_image" ).val( back_canvas_image );
-      $( "#back_canvas_data" ).val( JSON.stringify( back_canvas ) );
-      console.log("BACK CANVAS IMAGE: " + $( "#back_canvas_image" ).val());
-      console.log("BACK CANVAS DATA: " + $( "#back_canvas_data" ).val());
+      $( "#back_canvas_data" ).val( back_canvas_data );
 
       $(this).parents('form').submit();
     });
@@ -432,12 +433,26 @@ $(document).ready(function() {
   function checkBackgroundImage(data, currentShirt){
     if(data != undefined){
       var obj = jQuery.parseJSON(data);
-      if(obj.backgroundImage.src.indexOf(currentShirt) == -1){
-        obj.backgroundImage.src = baseDir + currentShirt.back_src;
+      var objFront = jQuery.parseJSON(currentShirt);
+      var frontShirt = objFront.backgroundImage.src;
+      var correctShirt = getTshirtBySrc(frontShirt);
+
+      if(obj.backgroundImage.src.indexOf(frontShirt) == -1){
+        obj.backgroundImage.src = baseDir + correctShirt.back_src;
         return JSON.stringify(obj);
       }
     }
     return data;
+  }
+
+  function getTshirtBySrc(shirt){
+    var correctShirt;
+    $.each(tshirts, function(i,v){
+        if(shirt.indexOf(v.front_src) != -1 || shirt.indexOf(v.back_src) != -1){
+          correctShirt = tshirts[i];
+        }
+    });
+    return correctShirt;
   }
 
   function loadShirt(src){

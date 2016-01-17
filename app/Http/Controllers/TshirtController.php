@@ -102,8 +102,10 @@ class TshirtController extends Controller
             $tshirt = Tshirt::findOrFail( $id );
 
             $tshirt->name = $request->get('name');
-            $tshirt->canvas_data = $request->get('canvas_data');
-            $tshirt->canvas_image = $request->get('canvas_image');
+            $tshirt->front_canvas_data = $request->get('front_canvas_data');
+            $tshirt->front_canvas_image = $request->get('front_canvas_image');
+						$tshirt->back_canvas_data = $request->get('back_canvas_data');
+            $tshirt->back_canvas_image = $request->get('back_canvas_image');
 
             $tshirt->save();
 
