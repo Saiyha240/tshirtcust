@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Cart;
 use App\CartItem;
 use App\Config;
@@ -11,100 +12,105 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-class CartController extends Controller
-{
+class CartController extends Controller {
 
-    public function __construct()
-    {
-        $this->user = Auth::user();
-    }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        $cart = Cart::firstOrCreate(['user_id' => $this->user->id]);
+	public function __construct() {
+		$this->user = Auth::user();
+	}
 
-        $items = $cart->cartItems;
-		$price = Config::key('price')->value;
-	    $total = count($items) * $price;
+	/**
+	 * Display a listing of the resource.
+	 *
+	 * @return \Illuminate\Http\Response
+	 */
+	public function index() {
+		$cart = Cart::firstOrCreate( [ 'user_id' => $this->user->id ] );
 
-        return view('cart.view', compact('items', 'price', 'total'));
-    }
+		$items = $cart->cartItems;
+		$price = Config::key( 'price' )->value;
+		$total = count( $items ) * $price;
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+		return view( 'cart.view', compact( 'items', 'price', 'total' ) );
+	}
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request, $tshirtId)
-    {
-	    $cart = Cart::firstOrCreate(['user_id' => $this->user->id]);
+	/**
+	 * Show the form for creating a new resource.
+	 *
+	 * @return \Illuminate\Http\Response
+	 */
+	public function create() {
+		//
+	}
 
-		$cartItem  = new Cartitem();
-		$cartItem->tshirt_id=$tshirtId;
-		$cartItem->cart()->associate($cart);
+	/**
+	 * Store a newly created resource in storage.
+	 *
+	 * @param  \Illuminate\Http\Request $request
+	 *
+	 * @return \Illuminate\Http\Response
+	 */
+	public function store( Request $request, $tshirtId ) {
+		$cart = Cart::firstOrCreate( [ 'user_id' => $this->user->id ] );
+
+
+		$cartItem = CartItem::firstOrNew( [
+			'tshirt_id' => $tshirtId,
+			'cart_id'   => $cart->id
+		] );
+
+		if ( $cartItem->exists ) {
+			$cartItem->quantity += 1;
+		}
+
 		$cartItem->save();
 
-	    return redirect('/cart');
-    }
+		return redirect( '/cart' );
+	}
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
+	/**
+	 * Display the specified resource.
+	 *
+	 * @param  int $id
+	 *
+	 * @return \Illuminate\Http\Response
+	 */
+	public function show( $id ) {
 
-    }
+	}
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
+	/**
+	 * Show the form for editing the specified resource.
+	 *
+	 * @param  int $id
+	 *
+	 * @return \Illuminate\Http\Response
+	 */
+	public function edit( $id ) {
+		//
+	}
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
+	/**
+	 * Update the specified resource in storage.
+	 *
+	 * @param  \Illuminate\Http\Request $request
+	 * @param  int $id
+	 *
+	 * @return \Illuminate\Http\Response
+	 */
+	public function update( Request $request, $id ) {
+		//
+	}
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        CartItem::destroy($id);
-        return redirect('/cart');
-    }
+	/**
+	 * Remove the specified resource from storage.
+	 *
+	 * @param  int $id
+	 *
+	 * @return \Illuminate\Http\Response
+	 */
+	public function destroy( $id ) {
+		CartItem::destroy( $id );
+
+		return redirect( '/cart' );
+	}
 }
