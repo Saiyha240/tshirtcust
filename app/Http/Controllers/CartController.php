@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Cart;
 use App\CartItem;
+use App\Config;
 use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
@@ -24,21 +25,13 @@ class CartController extends Controller
      */
     public function index()
     {
-        $cart = Cart::where('user_id',Auth::user()->id)->first();
-
-        if(!$cart){
-            $cart =  new Cart();
-            $cart->user_id=Auth::user()->id;
-            $cart->save();
-        }
+        $cart = Cart::firstOrCreate(['user_id' => $this->user->id]);
 
         $items = $cart->cartItems;
-        $total=0;
-        foreach($items as $item){
-            $total+=$item->tshirt->price;
-        }
+		$price = Config::key('price')->value;
+	    $total = count($items) * $price;
 
-        return view('cart.view',['items'=>$items,'total'=>$total]);
+        return view('cart.view', compact('items', 'price', 'total'));
     }
 
     /**
@@ -59,20 +52,14 @@ class CartController extends Controller
      */
     public function store(Request $request, $tshirtId)
     {
-        $cart = Cart::where('user_id',Auth::user()->id)->first();
+	    $cart = Cart::firstOrCreate(['user_id' => $this->user->id]);
 
-         if(!$cart){
-             $cart =  new Cart();
-             $cart->user_id=Auth::user()->id;
-             $cart->save();
-         }
+		$cartItem  = new Cartitem();
+		$cartItem->tshirt_id=$tshirtId;
+		$cartItem->cart()->associate($cart);
+		$cartItem->save();
 
-         $cartItem  = new Cartitem();
-         $cartItem->tshirt_id=$tshirtId;
-         $cartItem->cart_id= $cart->id;
-         $cartItem->save();
-
-         return redirect('/cart');
+	    return redirect('/cart');
     }
 
     /**

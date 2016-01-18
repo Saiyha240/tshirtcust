@@ -40,6 +40,10 @@ Route::group(['middleware' => 'auth'], function(){
 
 	Route::resource('users', 'UserController');
 
+	Route::post('cart/addItem/{tshirtId}', ['as' => 'cart.addItem', 'uses' => 'CartController@store']);
+	Route::get('cart/removeItem/{tshirtId}', ['as' => 'cart.removeItem', 'uses' => 'CartController@destroy']);
+	Route::get('/cart', ['as' => 'getCart', 'uses' => 'CartController@index']);
+
 	Route::resource('fileentries', 'FileEntryController');
 });
 
@@ -54,7 +58,3 @@ Route::get('/about', function () {
 Route::get('/orders', function () {
 	return view('orders.orders');
 });
-
-Route::post('cart/addItem/{tshirtId}', ['as' => 'cart.addItem', 'uses' => 'CartController@store']);
-Route::get('cart/removeItem/{tshirtId}', ['as' => 'cart.removeItem', 'uses' => 'CartController@destroy']);
-Route::get('/cart', ['as' => 'getCart', 'uses' => 'CartController@index']);

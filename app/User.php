@@ -50,7 +50,7 @@ class User extends Model implements AuthenticatableContract,
 
     public function isAdmin()
     {
-        return $this->role->id == 1;
+        return $this->role_id == 1;
     }
 
 	public function scopeUsers($query)
