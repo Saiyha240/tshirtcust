@@ -9,7 +9,7 @@ $(document).ready(function(){
   }
 
   $('.item').each(function(){
-    var price = $(this).find('input[id=price]').val();
+    var price = $(this).find('input[id=tshirt_price]').val();
     var quantity = $(this).find('input[id=quantity]');
     var grossHolder = $(this).find('span[id=gross]');
     var gross;
