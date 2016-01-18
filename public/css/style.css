@@ -6,13 +6,51 @@ body {
   /* Margin bottom by footer height */
   margin-bottom: 60px;
 }
-
-.jumbotron{
-	margin-bottom: 0px;
+.header{
+  min-height: 800px;
+  padding: 25px 0;
+  /*background-color: #e0ffff;*/
+  background: url(../img/banner_joke.jpg)no-repeat;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 
+.header .navbar{
+  background-color: transparent;
+  border: none;
+}
+
+.navbar-header .navbar-brand,
+.navbar-inverse .navbar-nav>li>a{
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.navbar-inverse .navbar-nav>li>a:hover{
+  text-shadow: 0 0 3px #FFFFFF;
+}
+
+.jumbotron{
+	margin-top: 30%;
+  background-color: transparent;
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.feature{
+  min-height: 400px;
+  padding: 25px 0;
+}
+
+.feature.alternate{
+  background-color: #337ab7;
+}
 .navbar{
 	border-radius: 0;
+}
+
+.navbar-brand{
+  font-size: 25px;
 }
 
 .container{
