@@ -20,6 +20,12 @@ body {
   margin-left: auto;
 }
 
+.container-md{
+  margin-right: auto;
+  margin-left: auto;
+  width: 75%;
+}
+
 .footer > .container {
   padding-top: 20px;
   padding-right: 15px;
@@ -216,4 +222,20 @@ select.btn option{
 */
 .img-center {
 	margin: 0 auto;
+}
+
+/*Table*/
+td span.label{
+  font-size: 14px;
+}
+
+/*Viewer*/
+.viewer{
+  margin-top: 25px;
+}
+
+.viewer img{
+  margin: 5px;
+  width: 330px;
+  height: 430px;
 }

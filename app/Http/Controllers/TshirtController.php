@@ -85,8 +85,6 @@ class TshirtController extends Controller
         {
             return abort(404);
         }
-
-
     }
 
     /**
@@ -137,6 +135,25 @@ class TshirtController extends Controller
 
     }
 
+    /**
+     * Show the shirt for viewing purposes.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function view($id)
+    {
+        try
+        {
+            $tshirt = Tshirt::findOrFail($id);
+
+            return view('tshirt.view')->with('tshirt', $tshirt);
+
+        } catch (ModelNotFoundException $e)
+        {
+            return abort(404);
+        }
+    }
 //    public function pay($id)
 //    {
 //        return $this->makePayment($id);

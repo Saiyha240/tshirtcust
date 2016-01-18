@@ -11,10 +11,10 @@
       <ul class="nav navbar-nav">
         @if( !Auth::guest() )
           <li class="">
-            <a href="{{ URL::route('tshirts.create') }}">Create</a>
+            <a href="{{ URL::route('tshirts.create') }}"><i class="fa fa-pencil"></i> Create</a>
           </li>
           <li>
-            <a href="{{ URL::route('tshirts.index') }}">List</a>
+            <a href="{{ URL::route('tshirts.index') }}"><i class="fa fa-list-alt"></i> List</a>
           </li>
           @if( Auth::user()->isAdmin() )
           <li class="dropdown">
@@ -40,7 +40,7 @@
         <li><a href="#" id="loginButton" data-selector="#login-dialog" class="dialog-link"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
       @else
         @if( !Auth::user()->isAdmin() )
-        <li><a href="/cart"><i class="fa fa-briefcase fa-lg"></i> My orders</a></li>
+        <li><a href="/orders"><i class="fa fa-briefcase fa-lg"></i> My orders</a></li>
         <li><a href="/cart"><i class="fa fa-shopping-cart fa-lg"></i> Cart</a></li>
         @endif
         <li><a href="{{ URL::route('getLogout') }}"><span class="glyphicon glyphicon-user"></span> Logout {{ $user->username }}</a></li>

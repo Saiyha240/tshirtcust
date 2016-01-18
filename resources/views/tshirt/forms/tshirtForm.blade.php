@@ -1,5 +1,5 @@
 <div class="form-group">
-    {!! Form::text('name', null, ['class' => 'form-control']) !!}
+    {!! Form::text('name', null, ['class' => 'form-control', 'placeholder'=>'Add Name']) !!}
 </div>
     {!! Form::hidden('front_canvas_data', null, ['id' => 'front_canvas_data']) !!}
     {!! Form::hidden('front_canvas_image', null, ['id' => 'front_canvas_image']) !!}

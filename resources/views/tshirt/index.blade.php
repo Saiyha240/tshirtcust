@@ -1,17 +1,18 @@
 @extends('tshirt.master')
 
 @section('content')
-    @include('layouts.partials.flash_message');
-    <table class="table table-striped">
+  <div class="container-md">
+    @include('layouts.partials.flash_message')
+    <table class="table table-striped tablewidth-md">
         <thead>
             <tr>
-                <td>#</td>
-                <td class="td-thumbnail">Front</td>
-                <td class="td-thumbnail">Back</td>
-                <td>Name</td>
-                <td>Add to cart</td>
-                <td>Status</td>
-                <td>Remove</td>
+                <th>#</th>
+                <th class="td-thumbnail">Front</th>
+                <th class="td-thumbnail">Back</th>
+                <th>Name</th>
+                <th>Edit</th>
+                <th>Add to cart</th>
+                <th>Remove</th>
             </tr>
         </thead>
         <tbody>
@@ -29,15 +30,15 @@
                        <?php endif; ?>
                     </td>
                     <td>
-                        {!! HTML::linkRoute('tshirts.edit', $tshirt->name, ['id' => $tshirt->id]) !!}
+                        {!! HTML::linkRoute('tshirts.view', $tshirt->name, ['id' => $tshirt->id]) !!}
+                    </td>
+                    <td>
+                        <a href="{{ URL::route('tshirts.edit', ['id' => $tshirt->id]) }}"><button class="btn btn-primary"><i class="fa fa-pencil-square-o"></i> Edit</button></a>
                     </td>
                     <td>
                         {!! Form::open(['route' => ['cart.addItem', $tshirt->id], 'class' => 'form-inline']) !!}
-                            {!! Form::button('<i class="fa fa-cart-plus"></i> Add to Cart', ['class'=>'btn btn-danger', 'type'=>'submit']) !!}
+                            {!! Form::button('<i class="fa fa-cart-plus"></i> Add to Cart', ['class'=>'btn btn-success', 'type'=>'submit']) !!}
                         {!! Form::close() !!}
-                    </td>
-                    <td>
-                        <!-- Insert status data here -->
                     </td>
                     <td>
                         {!! Form::open(['route' => ['tshirts.destroy', $tshirt->id], 'method' => 'delete']) !!}
@@ -48,5 +49,5 @@
             @endforeach
         </tbody>
     </table>
-
+</div>
 @endsection

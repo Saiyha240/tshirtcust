@@ -24,6 +24,7 @@ Route::group(['prefix' => 'auth'], function(){
 Route::group(['middleware' => 'auth'], function(){
 //    Route::post('tshirts/{tshirt}/pay', ['as' => 'tshirts.pay', 'uses' => 'TshirtController@pay']);
 //    Route::get('tshirts/{tshirt}/status', ['as' => 'tshirts.status', 'uses' => 'TshirtController@status']);
+    Route::get('tshirts/{tshirt}/view', ['as' => 'tshirts.view', 'uses' => 'TshirtController@view']);
     Route::resource('tshirts', 'TshirtController');
 
 	Route::group(['prefix' => 'admin', 'middleware' => 'roles'], function(){
@@ -49,6 +50,10 @@ Route::get('/', function () {
 
 Route::get('/about', function () {
 	return view('about.about');
+});
+
+Route::get('/orders', function () {
+	return view('orders.orders');
 });
 
 Route::post('cart/addItem/{tshirtId}', ['as' => 'cart.addItem', 'uses' => 'CartController@store']);
