@@ -30,7 +30,7 @@
                        <?php endif; ?>
                     </td>
                     <td>
-                        {!! HTML::linkRoute('tshirts.view', $tshirt->name, ['id' => $tshirt->id]) !!}
+                        {!! HTML::linkRoute('tshirts.show', $tshirt->name, ['id' => $tshirt->id]) !!}
                     </td>
                     <td>
                         <a href="{{ URL::route('tshirts.edit', ['id' => $tshirt->id]) }}"><button class="btn btn-primary"><i class="fa fa-pencil-square-o"></i> Edit</button></a>

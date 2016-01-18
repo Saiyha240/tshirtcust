@@ -24,7 +24,6 @@ Route::group(['prefix' => 'auth'], function(){
 Route::group(['middleware' => 'auth'], function(){
 //    Route::post('tshirts/{tshirt}/pay', ['as' => 'tshirts.pay', 'uses' => 'TshirtController@pay']);
 //    Route::get('tshirts/{tshirt}/status', ['as' => 'tshirts.status', 'uses' => 'TshirtController@status']);
-    Route::get('tshirts/{tshirt}/view', ['as' => 'tshirts.view', 'uses' => 'TshirtController@view']);
     Route::resource('tshirts', 'TshirtController');
 
 	Route::group(['prefix' => 'admin', 'middleware' => 'roles'], function(){
