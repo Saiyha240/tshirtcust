@@ -12,7 +12,10 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+
 class CartController extends Controller {
+
+	use PaypalHandler;
 
 	public function __construct() {
 		$this->user = Auth::user();
@@ -113,4 +116,14 @@ class CartController extends Controller {
 
 		return redirect( '/cart' );
 	}
+
+   public function pay()
+   {
+       return $this->makePayment(1);
+   }
+
+   public function status(Request $request, $id)
+   {
+       return $this->executePayment($request, $id);
+   }
 }
