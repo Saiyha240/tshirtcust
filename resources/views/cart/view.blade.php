@@ -6,11 +6,10 @@
             <p class="bg-warning center-block" align="center">There are no items on your cart. Add items to pay.</p>
         </div>
         <div class="row">
-
+            {!! Form::open(['action' => 'CartController@pay']) !!}
             <div class="col-md-8">
                 <div id="items">
                     <input type="hidden" value="{{count($items)}}" id="itemsNumber"/>
-                    {!! Form::open() !!}
                     @foreach( $items as $item )
                         <div class="item">
                             <div class="item-details">
@@ -21,7 +20,7 @@
 
                                 <div class="details">
                                     <span class="title">{{$item->tshirt->name}}</span><br>
-                                    {!! Form::input('number', 'quantity[]', $item->quantity,['class' => 'form-control', 'id' => 'quantity', 'min' => '1']) !!}
+                                    {!! Form::input('number', 'tshirt_quantity[]', $item->quantity,['class' => 'form-control', 'id' => 'quantity', 'min' => '1']) !!}
                                 </div>
                                 <div class="pricing">
                                     <span class="gross">Php <span id="gross">{{$price}}</span></span>
@@ -34,7 +33,6 @@
                             </div>
                         </div>
                     @endforeach
-                    {!! Form::close() !!}
                 </div>
             </div>
 
@@ -44,13 +42,10 @@
                     <b>Total: </b><span class="text-primary">Php <span id="total">{{$total}}</span></span>
                 </div>
                 <div class="checkout-button">
-                    {!! Form::open(['route' => ['cart.checkout'], 'class' => 'form-inline']) !!}
-                        {!! Form::submit('Checkout', ['class'=>'btn btn-lg btn-primary btn-block', 'id' => 'checkout']) !!}
-                    {!! Form::close() !!}
-                    <!-- <button class="btn btn-lg btn-primary btn-block" id="checkout">Checkout</button> -->
+                    {!! Form::submit('Checkout', ['class'=>'btn btn-lg btn-primary btn-block', 'id' => 'checkout']) !!}
                 </div>
             </div>
-
+            {!! Form::close() !!}
         </div>
     </div>
 @endsection

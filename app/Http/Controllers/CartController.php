@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Cart;
 use App\CartItem;
 use App\Config;
+use App\Tshirt;
 use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
@@ -15,17 +16,12 @@ use App\Http\Controllers\Controller;
 
 class CartController extends Controller {
 
-	use PaypalHandler;
+	use PaypalServiceTrait;
 
 	public function __construct() {
 		$this->user = Auth::user();
 	}
 
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return \Illuminate\Http\Response
-	 */
 	public function index() {
 		$cart = Cart::firstOrCreate( [ 'user_id' => $this->user->id ] );
 
@@ -36,23 +32,7 @@ class CartController extends Controller {
 		return view( 'cart.view', compact( 'items', 'price', 'total' ) );
 	}
 
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return \Illuminate\Http\Response
-	 */
-	public function create() {
-		//
-	}
-
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @param  \Illuminate\Http\Request $request
-	 *
-	 * @return \Illuminate\Http\Response
-	 */
-	public function store( Request $request, $tshirtId ) {
+	public function addItem( Request $request, $tshirtId ) {
 		$cart = Cart::firstOrCreate( [ 'user_id' => $this->user->id ] );
 
 
@@ -70,60 +50,41 @@ class CartController extends Controller {
 		return redirect( '/cart' );
 	}
 
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int $id
-	 *
-	 * @return \Illuminate\Http\Response
-	 */
-	public function show( $id ) {
+
+	public function emptyCart() {
 
 	}
 
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int $id
-	 *
-	 * @return \Illuminate\Http\Response
-	 */
-	public function edit( $id ) {
-		//
-	}
-
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  \Illuminate\Http\Request $request
-	 * @param  int $id
-	 *
-	 * @return \Illuminate\Http\Response
-	 */
-	public function update( Request $request, $id ) {
-		//
-	}
-
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int $id
-	 *
-	 * @return \Illuminate\Http\Response
-	 */
-	public function destroy( $id ) {
+	public function removeItem( $id ) {
 		CartItem::destroy( $id );
 
-		return redirect( '/cart' );
+		return redirect()->action( 'CartController@index' );
 	}
 
-   public function pay()
-   {
-       return $this->makePayment(1);
-   }
+	public function pay( Request $request ) {
+		$items = $this->mergeCartItemsData(
+			$request->get( 'tshirt_id' ),
+			$request->get( 'tshirt_price' ),
+			$request->get( 'tshirt_quantity' )
+		);
 
-   public function status(Request $request, $id)
-   {
-       return $this->executePayment($request, $id);
-   }
+		return $this->makePayment( $this->user->id, $items );
+	}
+
+	public function status( Request $request, $id ) {
+		return $this->executePayment( $request, $id );
+	}
+
+	private function mergeCartItemsData( $ids, $prices, $quantity ) {
+		return collect( $ids )->map( function ( $item, $key ) use ( $prices, $quantity ) {
+			$tshirt = Tshirt::find( $item );
+
+			return [
+				'sku'      => $tshirt->id,
+				'name'     => $tshirt->name,
+				'price'    => $prices[ $key ],
+				'quantity' => $quantity[ $key ]
+			];
+		} )->all();
+	}
 }
