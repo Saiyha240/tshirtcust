@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Cart;
 use App\Order;
 use App\Tshirt;
 use Illuminate\Http\Request;
@@ -67,8 +68,8 @@ trait PaypalServiceTrait {
 		            ->setDescription( 'Tshirt Checkout' );
 
 		$redirect_urls = new RedirectUrls();
-		$redirect_urls->setReturnUrl( action( 'CartController@status' ) )
-		              ->setCancelUrl( action( 'CartController@status' ) );
+		$redirect_urls->setReturnUrl( action( 'CartController@status', [ 'user' => Auth::user()->id ] ) )
+		              ->setCancelUrl( action( 'CartController@status', [ 'user' => Auth::user()->id ] ) );
 
 		$payment = new Payment();
 		$payment->setIntent( 'Sale' )
@@ -130,14 +131,14 @@ trait PaypalServiceTrait {
 			$order = new Order();
 
 			$order->user()->associate( Auth::user() );
-			$order->payer_id = $request->PayerID;
-			$order->payment_id = $payment_id;
+			$order->payer_id      = $request->PayerID;
+			$order->payment_id    = $payment_id;
 			$order->payment_token = $request->token;
-			$order->payment_data = $result;
-
+			$order->payment_data  = $result;
 			$order->save();
 
-			//TODO: Empty cart after save order
+			$this->addItemsToOrder( $order, Auth::user()->cartItems()->get() );
+			$this->deleteCartItems();
 
 			return Redirect::route( 'tshirts.index' )
 			               ->with( 'f_message', 'Payment Success!' )
@@ -157,5 +158,19 @@ trait PaypalServiceTrait {
 
 	private function getSystemPrice() {
 		return \App\Config::key( 'price' )->value;
+	}
+
+	private function addItemsToOrder( $order, $cart_items ) {
+		$price = $this->getSystemPrice();
+		collect( $cart_items )->each( function ( $item ) use ( $order, $price ) {
+			$order->tshirts()->attach( $item->tshirt_id, [
+				'price'    => $price,
+				'quantity' => $item->quantity
+			] );
+		} );
+	}
+
+	private function deleteCartItems() {
+		return Auth::user()->cartItems()->delete();
 	}
 }

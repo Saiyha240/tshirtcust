@@ -12,50 +12,51 @@ use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 
 class User extends Model implements AuthenticatableContract,
-                                    AuthorizableContract,
-                                    CanResetPasswordContract
-{
-    use Authenticatable, Authorizable, CanResetPassword, SoftDeletes;
+	AuthorizableContract,
+	CanResetPasswordContract {
+	use Authenticatable, Authorizable, CanResetPassword, SoftDeletes;
 
-    protected $dates = [ 'deleted_at' ];
+	protected $dates = [ 'deleted_at' ];
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    protected $fillable = ['username', 'email', 'password', 'gender', 'contact_number'];
+	/**
+	 * The attributes that are mass assignable.
+	 *
+	 * @var array
+	 */
+	protected $fillable = [ 'username', 'email', 'password', 'gender', 'contact_number' ];
 
-    /**
-     * The attributes excluded from the model's JSON form.
-     *
-     * @var array
-     */
-    protected $hidden = ['password', 'remember_token'];
+	/**
+	 * The attributes excluded from the model's JSON form.
+	 *
+	 * @var array
+	 */
+	protected $hidden = [ 'password', 'remember_token' ];
 
-    public function tshirts()
-    {
-        return $this->hasMany('App\Tshirt');
-    }
+	public function tshirts() {
+		return $this->hasMany( 'App\Tshirt' );
+	}
 
-    public function orders()
-    {
-        return $this->hasMany('App\Order');
-    }
+	public function orders() {
+		return $this->hasMany( 'App\Order' );
+	}
 
-    public function role()
-    {
-        return $this->belongsTo('App\Role');
-    }
+	public function role() {
+		return $this->belongsTo( 'App\Role' );
+	}
 
+	public function cart() {
+		return $this->hasOne( 'App\Cart' );
+	}
 
-    public function isAdmin()
-    {
-        return $this->role_id == 1;
-    }
+	public function cartItems() {
+		return $this->hasManyThrough( 'App\CartItem', 'App\Cart' );
+	}
 
-	public function scopeUsers($query)
-	{
-		return $query->where('role_id', 2);
+	public function isAdmin() {
+		return $this->role_id == 1;
+	}
+
+	public function scopeUsers( $query ) {
+		return $query->where( 'role_id', 2 );
 	}
 }

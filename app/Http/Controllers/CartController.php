@@ -71,7 +71,10 @@ class CartController extends Controller {
 		return $this->makePayment( $this->user->id, $items );
 	}
 
-	public function status( Request $request ) {
+	public function status( Request $request, $user_id ) {
+		if( $this->user->id != $user_id ){
+			return redirect()->action('CartController@index');
+		}
 		return $this->executePayment( $request );
 	}
 
