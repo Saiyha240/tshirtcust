@@ -11,6 +11,7 @@
                   <th>Total Quantity</th>
                   <th>Total Price</th>
                   <th>Ordered on</th>
+                  <th>View</th>
                   <th>Status</th>
               </tr>
           </thead>
@@ -21,6 +22,7 @@
                 <td>23</td>
                 <td>Php 900</td>
                 <td>01-01-2016</td>
+                <td><a><button class="btn btn-primary">View Items</button></a></td>
                 <td><span class="label label-primary">Ongoing</span></td>
               </tr>
               <!-- Order details to follow -->
