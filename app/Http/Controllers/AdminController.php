@@ -45,9 +45,9 @@ class AdminController extends Controller
 	            ->with('users', User::users()->get());
     }
 
-    public function shirts()
+    public function config()
     {
-        return view('admin.shirts');
+        return view('admin.config');
     }
 
     public function layouts()

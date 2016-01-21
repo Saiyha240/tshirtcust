@@ -32,11 +32,14 @@ Route::group( [ 'middleware' => 'auth' ], function () {
 		Route::get( 'orders', [ 'as' => 'admin.orders', 'uses' => 'AdminController@orders' ] );
 		Route::get( 'reports', [ 'as' => 'admin.reports', 'uses' => 'AdminController@reports' ] );
 		Route::get( 'users', [ 'as' => 'admin.users', 'uses' => 'AdminController@users' ] );
-		Route::get( 'shirts', [ 'as' => 'admin.shirts', 'uses' => 'AdminController@shirts' ] );
 		Route::get( 'layouts', [ 'as' => 'admin.layouts', 'uses' => 'AdminController@layouts' ] );
 		Route::get( 'images', [ 'as' => 'admin.images', 'uses' => 'AdminController@images' ] );
 		Route::post( 'images/store', [ 'as' => 'admin.images.store', 'uses' => 'AdminController@store' ] );
+
 	} );
+
+	Route::post( 'config/update/{configId}', [ 'as' => 'config.update', 'uses' => 'ConfigController@update' ] );
+	Route::get( 'admin/config', [ 'as' => 'config.index', 'uses' => 'ConfigController@index' ] );
 
 	Route::resource( 'users', 'UserController' );
 

@@ -9,6 +9,10 @@
         <h4>Add New</h4>
           {!! Form::open(['route' => 'admin.images.store', 'enctype' => 'multipart/form-data']) !!}
             <div class="form-group">
+                <label for="front">Name</label>
+                <input type="text" name="name" id="name" class="form-control" required/>
+            </div>
+          	<div class="form-group">
                 <label for="images">File Input</label>
                 <input type="file" name="frontFile" id="images" required/>
                 <p class="help-block">Images should be in PNG format.</p>
@@ -23,6 +27,7 @@
                   <td>#</td>
                   <td>Image</td>
                   <td>Name</td>
+                  <td>Filename</td>
                   <td>Remove</td>
                 </tr>
             </thead>
@@ -31,6 +36,7 @@
                 @foreach($entries as $entry)
                     <tr>
                         <td>{{ $entry->id }}</td>
+                        <td></td>
                         <td>{{ $entry->filename }}</td>
                         <td>{{ $entry->original_filename }}</td>
                     </tr>

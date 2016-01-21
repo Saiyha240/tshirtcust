@@ -8,13 +8,11 @@
 </head>
 <body>
 	@include('layouts.partials.navbar')
-	<div class="container">
-		<section id="typography">
+	<div class="container-md">
 			<div class="row">
 				@yield('content')
 			</div>
-		</section>
-	</div><!-- /container -->
+	</div>
 	@include('layouts.partials.footer')
 </body>
 {!! HTML::script('https://code.jquery.com/jquery-1.11.3.min.js') !!}
