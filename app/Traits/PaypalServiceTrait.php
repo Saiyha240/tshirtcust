@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Order;
 use App\Tshirt;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
 
 use Illuminate\Support\Facades\Input;
@@ -65,8 +67,8 @@ trait PaypalServiceTrait {
 		            ->setDescription( 'Tshirt Checkout' );
 
 		$redirect_urls = new RedirectUrls();
-		$redirect_urls->setReturnUrl( action( 'CartController@status', [ $user_id ] ) )
-		              ->setCancelUrl( action( 'CartController@status', [ $user_id ] ) );
+		$redirect_urls->setReturnUrl( action( 'CartController@status' ) )
+		              ->setCancelUrl( action( 'CartController@status' ) );
 
 		$payment = new Payment();
 		$payment->setIntent( 'Sale' )
@@ -104,16 +106,16 @@ trait PaypalServiceTrait {
 		               ->with( 'f_type', 'alert-danger' );
 	}
 
-	public function executePayment( $request, $id ) {
+	public function executePayment( $request ) {
 		$context = $this->getContext();
 
 		$payment_id = Session::get( 'paypal_payment_id' );
 
 		Session::forget( 'paypal_payment_id' );
 
-		if ( empty( $request->PayerID ) || empty( $request->token ) ) {
+		if ( empty( $request->PayerID ) || empty( $request->token ) || strcmp( $payment_id, $request->paymentId ) != 0 ) {
 			return Redirect::route( 'tshirts.index' )
-			               ->with( 'f_message', 'Payer cancelled payment' )
+			               ->with( 'f_message', 'Error in payment' )
 			               ->with( 'f_type', 'alert-danger' );
 		}
 
@@ -125,12 +127,17 @@ trait PaypalServiceTrait {
 		$result = $payment->execute( $execution, $context );
 
 		if ( $result->getState() == 'approved' ) {
-			$tshirt = Tshirt::find( $id );
+			$order = new Order();
 
-			$tshirt->paid         = true;
-			$tshirt->payment_data = $result;
+			$order->user()->associate( Auth::user() );
+			$order->payer_id = $request->PayerID;
+			$order->payment_id = $payment_id;
+			$order->payment_token = $request->token;
+			$order->payment_data = $result;
 
-			$tshirt->save();
+			$order->save();
+
+			//TODO: Empty cart after save order
 
 			return Redirect::route( 'tshirts.index' )
 			               ->with( 'f_message', 'Payment Success!' )

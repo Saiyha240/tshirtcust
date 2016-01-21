@@ -45,7 +45,7 @@ Route::group( [ 'middleware' => 'auth' ], function () {
 	Route::get( '/cart', [ 'as' => 'getCart', 'uses' => 'CartController@index' ] );
 
 	Route::post( 'cart/checkout', [ 'as' => 'cart.checkout', 'uses' => 'CartController@pay' ] );
-	Route::get( 'cart/{payment_id}/status', [ 'as' => 'cart.status', 'uses' => 'CartController@status' ] );
+	Route::get( 'cart/status', [ 'as' => 'cart.status', 'uses' => 'CartController@status' ] );
 
 	Route::get('/orders', function () {
 		return view('orders.orders');

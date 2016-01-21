@@ -71,8 +71,8 @@ class CartController extends Controller {
 		return $this->makePayment( $this->user->id, $items );
 	}
 
-	public function status( Request $request, $id ) {
-		return $this->executePayment( $request, $id );
+	public function status( Request $request ) {
+		return $this->executePayment( $request );
 	}
 
 	private function mergeCartItemsData( $ids, $prices, $quantity ) {
