@@ -50,9 +50,8 @@ Route::group( [ 'middleware' => 'auth' ], function () {
 	Route::post( 'cart/checkout', [ 'as' => 'cart.checkout', 'uses' => 'CartController@pay' ] );
 	Route::get( 'cart/status/{user}', [ 'as' => 'cart.status', 'uses' => 'CartController@status' ] );
 
-	Route::get('/orders', function () {
-		return view('orders.orders');
-	});
+	Route::get('/orders', ['uses' => 'OrderController@index']);
+	Route::get('/orders/{order}', ['uses' => 'OrderController@show']);
 
 	Route::resource( 'fileentries', 'FileEntryController' );
 } );

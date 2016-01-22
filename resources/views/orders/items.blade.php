@@ -4,26 +4,27 @@
     <div class="container container-fluid center-block">
         <div class="row">
             <div class="col-md-8">
-          {{--  @foreach( $items as $item ) --}}
+                @foreach( $tshirts as $tshirt )
                     <div class="item">
                         <div class="item-details">
-                            <img src="{{--$item->tshirt->front_canvas_image--}}" alt="{{--$item->tshirt->name--}}"
+                            <img src="{{$tshirt->front_canvas_image}}" alt="{{$tshirt->name}}"
                                  class="img-responsive img-thumbnail">
+
                             <div class="details">
-                                <span class="title">{{--$item->tshirt->name--}}</span><br>
-                                <span  id="quantity">{{--$item->quantity--}}</span><br>
+                                <span class="title">{{$tshirt->name}}</span><br>
+                                <span id="quantity">{{$tshirt->pivot->quantity}}</span><br>
                             </div>
                             <div class="pricing">
-                                <span class="gross">Php <span id="gross">{{--$price--}}</span></span>
+                                <span class="gross">Php <span id="gross">{{$tshirt->pivot->price}}</span></span>
                             </div>
                         </div>
                     </div>
-            {{--    @endforeach --}}
-              </div>
+                @endforeach
+            </div>
 
             <div class="col-md-4 checkout">
                 <div class="checkout-data">
-                    <b>Total: </b><span class="text-primary">Php <span id="total">{{--$total--}}</span></span>
+                    <b>Total: </b><span class="text-primary">Php <span id="total">{{$total}}</span></span>
                 </div>
             </div>
         </div>
