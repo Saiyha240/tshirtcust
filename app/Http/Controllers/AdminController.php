@@ -32,7 +32,9 @@ class AdminController extends Controller
 
     public function reports()
     {
-        return view('admin.reports');
+        $orders = Order::where('status', 1)->get();
+
+        return view('admin.reports', compact('orders'));
     }
 
     public function users()
@@ -53,14 +55,14 @@ class AdminController extends Controller
 
     public function images()
     {
-	    $entries = FileEntry::all();
+  	    $entries = FileEntry::all();
 
-	    return view('admin.images', compact('entries'));
+  	    return view('admin.images', compact('entries'));
     }
 
     public function orders()
     {
-        $orders = Order::all();
+        $orders = Order::where('status', 0)->get();
 
         return view('admin.orders', compact('orders'));
     }

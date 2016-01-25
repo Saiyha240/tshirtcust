@@ -141,7 +141,7 @@ trait PaypalServiceTrait {
 			$this->deleteCartItems();
 
 			return Redirect::route( 'tshirts.index' )
-			               ->with( 'f_message', 'Payment Success!' )
+			               ->with( 'f_message', 'Payment Success! You can view your order on My Orders page. ' )
 			               ->with( 'f_type', 'alert-success' );
 		}
 

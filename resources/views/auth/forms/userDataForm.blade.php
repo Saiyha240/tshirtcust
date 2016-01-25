@@ -74,6 +74,20 @@
     </div>
 </div>
 <div class="form-group">
+    {!! Form::label('Phone Number', null, array('for' => 'contact_number', 'class' => 'col-md-4 control-label')) !!}
+    <div class="col-md-4">
+      {!! Form::text('contact_number', null,
+               array(
+                  'required',
+                  'id' => 'contact_number',
+                  'class' => 'form-control input-md',
+                  'placeholder' => 'Phone Number'
+              )
+          )
+      !!}
+    </div>
+</div>
+<div class="form-group">
     {!! Form::label('', null, array('for' => 'registerBtn', 'class' => 'col-md-4 control-label')) !!}
     <div class="col-md-4">
         {!! Form::submit($submitText,

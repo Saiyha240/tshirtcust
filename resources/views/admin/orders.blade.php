@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('content')
-    <h1>Orders</h1>
+    <h1>Pending Orders</h1>
     <hr>
     @include('layouts.partials.flash_message')
     <table class="table table-striped">

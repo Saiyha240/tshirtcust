@@ -83,7 +83,7 @@ class UserController extends Controller
         $user->update($request->all());
 
         return Redirect::action('AdminController@users')
-                            ->with('f_message', 'Successfully udpated user ' . $user->username)
+                            ->with('f_message', 'Successfully updated user ' . $user->username)
                             ->with('f_type', 'alert-success');
     }
 
