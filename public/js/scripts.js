@@ -10,13 +10,13 @@ $(document).ready(function(){
     $('#emptycart').css('display', 'block');
   }
 
-  $('.item').each(function(){
+  $('#items .item').each(function(){
     var tshirtId = $(this).find('input[id=tshirt_id]').val();
     var price = $(this).find('input[id=tshirt_price]').val();
     var quantity = $(this).find('input[id=quantity]');
     var grossHolder =$(this).find('span[id=gross]');
     shirtObj.push({"tshirtId": tshirtId, "price": price, "quantity": quantity.val()});
-    
+
     var gross = updateGross(price, quantity.val());
     updateData(gross, grossHolder);
     console.log(JSON.stringify(orderObj));
