@@ -67,7 +67,7 @@ class CartController extends Controller {
 			$request->get( 'tshirt_price' ),
 			$request->get( 'tshirt_quantity' )
 		);
-
+		// print_r(array_values($items));
 		return $this->makePayment( $this->user->id, $items );
 	}
 

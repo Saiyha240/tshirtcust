@@ -11,6 +11,7 @@ $(document).ready(function(){
   }
 
   $('#items .item').each(function(){
+    var parentItem = $(this);
     var tshirtId = $(this).find('input[id=tshirt_id]').val();
     var price = $(this).find('input[id=tshirt_price]').val();
     var quantity = $(this).find('input[id=quantity]');
@@ -23,11 +24,17 @@ $(document).ready(function(){
 
     quantity.on('input', function(){
       gross = updateGross(price, quantity.val());
+
       updateData(gross, grossHolder);
       updateShirtJson(tshirtId, price, quantity.val());
+      // updateFormValues(parentItem, gross);
     });
   });
 
+  function updateFormValues(parentItem, gross){
+    var priceHolder = parentItem.find('input[id=tshirt_price]');
+    priceHolder.val(gross);
+  }
 
   function updateData(gross, grossHolder){
     grossHolder.text(gross);
