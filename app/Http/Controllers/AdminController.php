@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\FileEntry;
+use App\Order;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -27,11 +28,6 @@ class AdminController extends Controller
     public function dashboard()
     {
         return view('admin.dashboard');
-    }
-
-    public function orders()
-    {
-        return view('admin.orders');
     }
 
     public function reports()
@@ -60,6 +56,13 @@ class AdminController extends Controller
 	    $entries = FileEntry::all();
 
 	    return view('admin.images', compact('entries'));
+    }
+
+    public function orders()
+    {
+        $orders = Order::all();
+
+        return view('admin.orders', compact('orders'));
     }
 
 	public function store(Request $request)

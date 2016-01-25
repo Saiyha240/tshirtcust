@@ -23,15 +23,19 @@
                         <td>Php {{ $order->totalPrice() }}</td>
                         <td>{{ $order->created_at }}</td>
                         <td>
-                            <a href="{{ URL::action('OrderController@show', $order->id) }}">
-                                <button class="btn btn-primary btn-xs">View Items</button>
-                            </a>
+                          <a href="{{ URL::action('OrderController@show', $order->id) }}">
+                              <button class="btn btn-primary btn-xs">View Items</button>
+                          </a>
                         </td>
-                        <td><span class="label label-primary">Verified</span></td>
+                        @if( $order->status == 0 )
+                        <td><span class="label label-info">Ongoing</span></td>
+                        @else
+                        <td><span class="label label-success">Completed</span></td>
+                        @endif
                     </tr>
                 @endforeach
                 </tbody>
             </table>
         </div>
-    </div><!-- /container -->
+    </div>
 @endsection

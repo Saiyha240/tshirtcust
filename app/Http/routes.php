@@ -35,9 +35,9 @@ Route::group( [ 'middleware' => 'auth' ], function () {
 		Route::get( 'layouts', [ 'as' => 'admin.layouts', 'uses' => 'AdminController@layouts' ] );
 		Route::get( 'images', [ 'as' => 'admin.images', 'uses' => 'AdminController@images' ] );
 		Route::post( 'images/store', [ 'as' => 'admin.images.store', 'uses' => 'AdminController@store' ] );
-
 	} );
 
+	Route::get('admin/orders/{orderId}', ['uses' => 'OrderController@update']);
 	Route::post( 'config/update/{configId}', [ 'as' => 'config.update', 'uses' => 'ConfigController@update' ] );
 	Route::get( 'admin/config', [ 'as' => 'config.index', 'uses' => 'ConfigController@index' ] );
 

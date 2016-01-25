@@ -2,29 +2,47 @@
 
 @section('content')
     <h1>Orders</h1>
+    <hr>
+    @include('layouts.partials.flash_message')
     <table class="table table-striped">
         <thead>
             <tr>
                 <td>#</td>
-                <td>Name</td>
                 <td>Quantity</td>
+                <td>Price</td>
                 <td>Ordered by</td>
                 <td>Ordered on</td>
+                <td>View</td>
                 <td>Status</td>
                 <td>Action</td>
             </tr>
         </thead>
         <tbody>
-            <!-- Sample data -->
+            @foreach( $orders as $order )
             <tr>
-              <td>1</td>
-              <td><a>Sample Shirt</a></td>
-              <td>23</td>
-              <td>Sample User</td>
-              <td>01-01-2016</td>
+              <td>{{$order->id}}</td>
+              <td>{{ $order->totalQuantity() }}</td>
+              <td>Php {{ $order->totalPrice() }}</td>
+              <td>User {{ $order->user_id }}</td>
+              <td>{{ $order->created_at }}</td>
+              <td>
+                  <a href="{{ URL::action('OrderController@show', $order->id) }}">
+                      <button class="btn btn-primary btn-xs">View Items</button>
+                  </a>
+              </td>
+              @if( $order->status == 0 )
               <td>Pending</td>
-              <td><button class="btn btn-primary">Mark as done</button></td>
+              <td>
+                <a href="{{ URL::action('OrderController@update', $order->id) }}">
+                  <button class="btn btn-primary">Mark As Done</button>
+                </a>
+              </td>
+              @else
+              <td>Done</td>
+                <td><span class="label label-success">Completed</span></td>
+              @endif
             </tr>
+            @endforeach
         </tbody>
     </table>
 

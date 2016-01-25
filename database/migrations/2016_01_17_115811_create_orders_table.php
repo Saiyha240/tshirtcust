@@ -15,10 +15,11 @@ class CreateOrdersTable extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->unsigned();
+            $table->integer('status')->unsigned()->default(0);
             $table->longText('payment_data');
-	        $table->string('payer_id');
-	        $table->string('payment_id');
-	        $table->string('payment_token');
+  	        $table->string('payer_id');
+  	        $table->string('payment_id');
+  	        $table->string('payment_token');
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users');
