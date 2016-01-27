@@ -21,6 +21,7 @@
                                 <div class="details">
                                     <span class="title">{{$item->tshirt->name}}</span><br>
                                     {!! Form::input('number', 'tshirt_quantity[]', $item->quantity,['class' => 'form-control', 'id' => 'quantity', 'min' => '1']) !!}
+                                    {!! Form::button('Update', ['class'=>'btn btn-sm btn-primary update-quantity']) !!}
                                 </div>
                                 <div class="pricing">
                                     <span class="gross">Php <span id="gross">{{$price}}</span></span>
@@ -38,7 +39,7 @@
 
             <div class="col-md-4 checkout">
                 <div class="checkout-data">
-                    <input type="hidden" value="{{$total}}" id="totalInitial"></input>
+                    <input type="hidden" value="{{$total}}" id="totalInitial"/>
                     <b>Total: </b><span class="text-primary">Php <span id="total">{{$total}}</span></span>
                 </div>
                 <div class="checkout-button">

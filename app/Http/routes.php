@@ -47,6 +47,8 @@ Route::group( [ 'middleware' => 'auth' ], function () {
 	Route::get( 'cart/removeItem/{tshirtId}', [ 'as' => 'cart.removeItem', 'uses' => 'CartController@removeItem' ] );
 	Route::get( '/cart', [ 'as' => 'getCart', 'uses' => 'CartController@index' ] );
 
+	Route::post('cart/item/update', ['uses' => 'CartItemController@update']);
+
 	Route::post( 'cart/checkout', [ 'as' => 'cart.checkout', 'uses' => 'CartController@pay' ] );
 	Route::get( 'cart/status/{user}', [ 'as' => 'cart.status', 'uses' => 'CartController@status' ] );
 
