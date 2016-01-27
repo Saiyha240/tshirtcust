@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container container-fluid center-block">
-        <div class="row">
+        <div class="row container-md">
             <div class="col-md-8">
                 @foreach( $tshirts as $tshirt )
                     <div class="item">
