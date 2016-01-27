@@ -14,9 +14,9 @@ class CartItemController extends Controller {
 		$this->user = Auth::user();
 	}
 
-	public function update( Request $request ) {
-		$tshirt_id       = $request->get( 'tshirt_id' );
-		$tshird_quantity = $request->get( 'tshirt_quantity' );
+	public function update( ) {
+		$tshirt_id       = $_POST['tshirt_id'];
+		$tshird_quantity = $_POST['tshirt_quantity'];
 
 		$cart_item           = $this->user->cartItems()->where( 'tshirt_id', $tshirt_id )->first();
 		$cart_item->quantity = $tshird_quantity;

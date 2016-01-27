@@ -21,7 +21,7 @@
                                 <div class="details">
                                     <span class="title">{{$item->tshirt->name}}</span><br>
                                     {!! Form::input('number', 'tshirt_quantity[]', $item->quantity,['class' => 'form-control', 'id' => 'quantity', 'min' => '1']) !!}
-                                    {!! Form::button('Update', ['class'=>'btn btn-sm btn-primary update-quantity']) !!}
+                                    <meta name="_token" content="{!! csrf_token() !!}"/>
                                 </div>
                                 <div class="pricing">
                                     <span class="gross">Php <span id="gross">{{$price}}</span></span>
