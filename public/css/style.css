@@ -129,9 +129,20 @@ body {
 .Plaster{font-family:"Plaster";}
 .Engagement{font-family:"Engagement";}
 
+/*Create page*/
+
+#avatarlist{
+  overflow-x: scroll;
+  height: 230px;
+}
 
 #payment{
   width: 60%;
+}
+
+.img-polaroid{
+  height: 100px;
+  width: 100px;
 }
 
 .checkout{

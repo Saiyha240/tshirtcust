@@ -25,4 +25,5 @@
 {!! HTML::script('js/loginDialog.js') !!}
 {!! HTML::script('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js') !!}
 {!! HTML::script('js/scripts.js') !!}
+{!! HTML::script('js/style.js') !!}
 </html>
