@@ -26,7 +26,6 @@ Route::group( [ 'middleware' => 'auth' ], function () {
 
 	Route::group( [ 'prefix' => 'admin', 'middleware' => 'roles' ], function () {
 		Route::get( '/', [ 'as' => 'admin.index', 'uses' => 'AdminController@index' ] );
-		Route::get( 'dashboard', [ 'as' => 'admin.dashboard', 'uses' => 'AdminController@dashboard' ] );
 		Route::get( 'orders', [ 'as' => 'admin.orders', 'uses' => 'AdminController@orders' ] );
 		Route::get( 'reports', [ 'as' => 'admin.reports', 'uses' => 'AdminController@reports' ] );
 		Route::get( 'users', [ 'as' => 'admin.users', 'uses' => 'AdminController@users' ] );

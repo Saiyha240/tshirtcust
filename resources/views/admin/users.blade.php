@@ -1,8 +1,17 @@
 @extends('layouts.admin')
 
 @section('content')
+  <div class="card">
+    <div class="card-sm bg-primary">
+      <span class="glyphicon glyphicon-user"></span>
+      <div class="card-content">
+          <div class="card-number">23</div>
+          <div class="card-text">Users</div>
+      </div>
+    </div>
+  </div>
+  <hr>
   @include('layouts.partials.flash_message');
-  <h1>Users</h1>
   <table class="table table-striped">
       <thead>
           <tr>
@@ -23,8 +32,6 @@
                   <td>{{ $user->contact_number }} </td>
                   <td>{{ $user->gender }}</td>
                   <td>
-
-                      <a href="{{ URL::action('UserController@edit', $user->id) }}" class="btn btn-primary btn-sm">Edit</a>
                       {!! Form::open(['action' => ['UserController@destroy', $user->id], 'method' => 'delete']) !!}
                           {!! Form::submit('Delete', ['class'=>'btn btn-danger btn-sm']) !!}
                       {!! Form::close() !!}

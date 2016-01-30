@@ -20,12 +20,11 @@
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Administration <span class="caret"></span></a>
             <ul class="dropdown-menu">
-              <li><a href="../admin/dashboard">Dashboard</a></li>
               <li><a href="../admin/orders">Pending Orders</a></li>
               <li><a href="../admin/reports">Reports</a></li>
               <li><a href="../admin/config">Configuration</a></li>
-              <li role="separator" class="divider"></li>
               <li><a href="../admin/users">Users</a></li>
+              <li role="separator" class="divider"></li>
               <li><a href="../admin/layouts">Shirt Layouts</a></li>
               <li><a href="../admin/images">Images</a></li>
             </ul>

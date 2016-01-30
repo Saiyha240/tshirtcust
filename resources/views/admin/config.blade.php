@@ -1,7 +1,15 @@
 @extends('layouts.admin')
 
 @section('content')
-    <h1>Configuration</h1>
+    <div class="card">
+      <div class="card-sm bg-primary">
+        <span class="glyphicon glyphicon-tag"></span>
+        <div class="card-content">
+            <div class="card-number">23</div>
+            <div class="card-text">Current Price</div>
+        </div>
+      </div>
+    </div>
     <hr>
     <div class="container-md">
     	<div class="col-md-6 col-md-offset-3">

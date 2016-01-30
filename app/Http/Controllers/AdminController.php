@@ -25,11 +25,6 @@ class AdminController extends Controller
         //
     }
 
-    public function dashboard()
-    {
-        return view('admin.dashboard');
-    }
-
     public function reports()
     {
         $orders = Order::where('status', 1)->get();

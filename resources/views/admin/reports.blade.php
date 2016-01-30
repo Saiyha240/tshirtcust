@@ -1,7 +1,15 @@
 @extends('layouts.admin')
 
 @section('content')
-    <h1>Reports</h1>
+    <div class="card">
+      <div class="card-sm bg-primary">
+        <span class="glyphicon glyphicon-usd"></span>
+        <div class="card-content">
+            <div class="card-number">Php 2300</div>
+            <div class="card-text">Sales</div>
+        </div>
+      </div>
+    </div>
     <hr>
     <table class="table table-striped">
         <thead>
