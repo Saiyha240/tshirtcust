@@ -9,36 +9,43 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 
-class FileEntryController extends Controller
-{
+class FileEntryController extends Controller {
 	/**
 	 * Display a listing of the resource.
 	 *
 	 * @return Response
 	 */
-	public function index()
-	{
+	public function index() {
 		$entries = FileEntry::all();
 
-		return view('admin.images', compact('entries'));
+		return view( 'admin.images', compact( 'entries' ) );
 	}
 
-	public function add() {
+	public function store(Request $request) {
+		$file = $request->file('frontFile');
 
-		$file = Request::file('filefield');
 		$extension = $file->getClientOriginalExtension();
 
-		Storage::disk('local')->put($file->getFilename().'.'.$extension,  File::get($file));
+		if( strcmp( strtolower($extension), 'png' ) == 0 )
+		{
+			Storage::disk('local')->put($file->getFilename().'.'.$extension,  File::get($file));
 
-		$entry = FileEntry::create([
-			'mime'                  => $file->getClientMimeType(),
-			'original_filename'     => $file->getClientOriginalName(),
-			'filename'              => $file->getFilename().'.'.$extension
-		]);
+			$entry = FileEntry::create([
+				'mime'                  => $file->getClientMimeType(),
+				'original_filename'     => $file->getClientOriginalName(),
+				'filename'              => $file->getFilename().'.'.$extension
+			]);
 
-		$entry->save();
+			$entry->save();
 
-		return redirect('fileentry');
+			return Redirect::route('admin.images');
+		}else{
+			return Redirect::route('admin.images');
+		}
+
+	}
+
+	public function destroy( $id ) {
 
 	}
 }

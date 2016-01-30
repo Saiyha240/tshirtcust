@@ -22,6 +22,6 @@ class CartItemController extends Controller {
 		$cart_item->quantity = $tshird_quantity;
 		$cart_item->save();
 
-		return json_encode($cart_item);
+		return json_encode( $cart_item );
 	}
 }

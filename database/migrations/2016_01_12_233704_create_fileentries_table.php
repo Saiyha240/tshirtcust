@@ -17,6 +17,7 @@ class CreateFileentriesTable extends Migration
 	        $table->string('filename');
 	        $table->string('mime');
 	        $table->string('original_filename');
+	        $table->softDeletes();
 	        $table->timestamps();
         });
     }

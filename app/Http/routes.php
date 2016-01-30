@@ -22,8 +22,6 @@ Route::group( [ 'prefix' => 'auth' ], function () {
 } );
 
 Route::group( [ 'middleware' => 'auth' ], function () {
-//    Route::post('tshirts/{tshirt}/pay', ['as' => 'tshirts.pay', 'uses' => 'TshirtController@pay']);
-//    Route::get('tshirts/{tshirt}/status', ['as' => 'tshirts.status', 'uses' => 'TshirtController@status']);
 	Route::resource( 'tshirts', 'TshirtController' );
 
 	Route::group( [ 'prefix' => 'admin', 'middleware' => 'roles' ], function () {
@@ -34,7 +32,7 @@ Route::group( [ 'middleware' => 'auth' ], function () {
 		Route::get( 'users', [ 'as' => 'admin.users', 'uses' => 'AdminController@users' ] );
 		Route::get( 'layouts', [ 'as' => 'admin.layouts', 'uses' => 'AdminController@layouts' ] );
 		Route::get( 'images', [ 'as' => 'admin.images', 'uses' => 'AdminController@images' ] );
-		Route::post( 'images/store', [ 'as' => 'admin.images.store', 'uses' => 'AdminController@store' ] );
+		Route::post( 'images/store', [ 'as' => 'admin.images.store', 'uses' => 'AdminController@imageStore' ] );
 	} );
 
 	Route::get('admin/orders/{orderId}', ['uses' => 'OrderController@update']);

@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\FileEntry;
 use App\Order;
 use App\User;
-use Illuminate\Http\Request;
+use App\Http\Requests\FileEntryRequest;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -67,8 +67,9 @@ class AdminController extends Controller
         return view('admin.orders', compact('orders'));
     }
 
-	public function store(Request $request)
+	public function imageStore(FileEntryRequest $request)
 	{
+
 		$file = $request->file('frontFile');
 
 		$extension = $file->getClientOriginalExtension();

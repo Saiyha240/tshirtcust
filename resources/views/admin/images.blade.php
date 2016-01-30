@@ -7,7 +7,7 @@
     <div class="col-md-12">
       <div class="col-md-4">
         <h4>Add New</h4>
-          {!! Form::open(['route' => 'admin.images.store', 'enctype' => 'multipart/form-data']) !!}
+          {!! Form::open(['action' => 'AdminController@imageStore', 'enctype' => 'multipart/form-data']) !!}
             <div class="form-group">
                 <label for="front">Name</label>
                 <input type="text" name="name" id="name" class="form-control" required/>
@@ -17,7 +17,7 @@
                 <input type="file" name="frontFile" id="images" required/>
                 <p class="help-block">Images should be in PNG format.</p>
             </div>
-            <input type="submit" class="btn btn-default btn-sm" value="Upload Image" name="submit">
+            <input type="submit" class="btn btn-default btn-sm" value="Upload Image">
           {!! Form::close() !!}
       </div>
       <div class="col-md-8">
