@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\FileEntry;
-use Illuminate\Http\Request;
+use App\Http\Requests\FileEntryRequest;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -21,27 +21,12 @@ class FileEntryController extends Controller {
 		return view( 'admin.images', compact( 'entries' ) );
 	}
 
-	public function store(Request $request) {
-		$file = $request->file('frontFile');
+	public function store( FileEntryRequest $request ) {
+		$file        = $request->file( 'frontFile' );
+		$custom_name = $request->get( 'custom_name' );
+		$this->saveImage( $file, $custom_name );
 
-		$extension = $file->getClientOriginalExtension();
-
-		if( strcmp( strtolower($extension), 'png' ) == 0 )
-		{
-			Storage::disk('local')->put($file->getFilename().'.'.$extension,  File::get($file));
-
-			$entry = FileEntry::create([
-				'mime'                  => $file->getClientMimeType(),
-				'original_filename'     => $file->getClientOriginalName(),
-				'filename'              => $file->getFilename().'.'.$extension
-			]);
-
-			$entry->save();
-
-			return Redirect::route('admin.images');
-		}else{
-			return Redirect::route('admin.images');
-		}
+		return redirect()->action( 'TshirtController@index' );
 
 	}
 

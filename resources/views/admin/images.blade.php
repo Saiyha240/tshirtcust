@@ -10,7 +10,7 @@
           {!! Form::open(['action' => 'AdminController@imageStore', 'enctype' => 'multipart/form-data']) !!}
             <div class="form-group">
                 <label for="front">Name</label>
-                <input type="text" name="name" id="name" class="form-control" required/>
+                <input type="text" name="custom_name" id="name" class="form-control" required/>
             </div>
           	<div class="form-group">
                 <label for="images">File Input</label>

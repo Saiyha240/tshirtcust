@@ -59,4 +59,9 @@ class User extends Model implements AuthenticatableContract,
 	public function scopeUsers( $query ) {
 		return $query->where( 'role_id', 2 );
 	}
+
+	public function fileentries(){
+		return $this->hasMany('App\FileEntry');
+	}
+
 }

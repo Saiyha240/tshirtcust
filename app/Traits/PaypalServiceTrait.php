@@ -2,16 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Cart;
 use App\Order;
-use App\Tshirt;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
 
-use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Redirect;
 use PayPal\Api\Amount;
 use PayPal\Api\Item;

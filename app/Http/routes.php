@@ -34,7 +34,7 @@ Route::group( [ 'middleware' => 'auth' ], function () {
 		Route::post( 'images/store', [ 'as' => 'admin.images.store', 'uses' => 'AdminController@imageStore' ] );
 	} );
 
-	Route::get('admin/orders/{orderId}', ['uses' => 'OrderController@update']);
+	Route::get( 'admin/orders/{orderId}', [ 'uses' => 'OrderController@update' ] );
 	Route::post( 'config/update/{configId}', [ 'as' => 'config.update', 'uses' => 'ConfigController@update' ] );
 	Route::get( 'admin/config', [ 'as' => 'config.index', 'uses' => 'ConfigController@index' ] );
 
@@ -44,15 +44,19 @@ Route::group( [ 'middleware' => 'auth' ], function () {
 	Route::get( 'cart/removeItem/{tshirtId}', [ 'as' => 'cart.removeItem', 'uses' => 'CartController@removeItem' ] );
 	Route::get( '/cart', [ 'as' => 'getCart', 'uses' => 'CartController@index' ] );
 
-	Route::post('cart/item/update', ['uses' => 'CartItemController@update']);
+	Route::post( 'cart/item/update', [ 'uses' => 'CartItemController@update' ] );
 
 	Route::post( 'cart/checkout', [ 'as' => 'cart.checkout', 'uses' => 'CartController@pay' ] );
 	Route::get( 'cart/status/{user}', [ 'as' => 'cart.status', 'uses' => 'CartController@status' ] );
 
-	Route::get('/orders', ['uses' => 'OrderController@index']);
-	Route::get('/orders/{order}', ['uses' => 'OrderController@show']);
+	Route::get( '/orders', [ 'uses' => 'OrderController@index' ] );
+	Route::get( '/orders/{order}', [ 'uses' => 'OrderController@show' ] );
 
 	Route::resource( 'fileentries', 'FileEntryController' );
+
+	Route::group( [ 'prefix' => 'api' ], function () {
+		Route::get( 'usableImages', ['uses' => "ApiController@getUsableImages"]);
+	} );
 } );
 
 Route::get( '/', function () {
