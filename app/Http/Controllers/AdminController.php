@@ -43,11 +43,6 @@ class AdminController extends Controller
         return view('admin.config');
     }
 
-    public function layouts()
-    {
-        return view('admin.layouts');
-    }
-
     public function images()
     {
   	    $entries = FileEntry::all();

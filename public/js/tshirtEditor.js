@@ -5,7 +5,8 @@ var back_canvas_data;
 var back_canvas_image;
 var tempFrontData;
 var tempBackData;
-//Sample shirts data
+
+//Tshirts
 var tshirts = [
   {"tshirt_id": '1',
   "tshirt_name":"Men Sleeve Shirts",
@@ -98,27 +99,14 @@ $(document).ready(function() {
     loadShirt(defaultTshirt);
   }
 
-  //TODO Load shirt here or on html page?
-
   /*
   * Controls section
+  *
+  * Load shirts
   */
   $("#shirtTypes").change(function(e){
-    if($(this).val() == "0"){
-      loadShirt(tshirts[0].front_src);
-    }
-    else if ($(this).val() == "1"){
-      loadShirt(tshirts[1].front_src);
-    }
-    else if ($(this).val() == "2"){
-      loadShirt(tshirts[2].front_src);
-    }
-    else if ($(this).val() == "3"){
-      loadShirt(tshirts[3].front_src);
-    }
-    else if ($(this).val() == "4"){
-      loadShirt(tshirts[4].front_src);
-    }
+    var selected_shirt_id = $(this).val();
+    loadShirt(tshirts[selected_shirt_id].front_src);
   });
 
   $('.color-preview').click(function(){
@@ -336,16 +324,16 @@ $(document).ready(function() {
         var tshirtId = $("#shirtTypes").val();
         if ($(this).attr("data-original-title") == "Show Back View") {
           disableItemsOnBackView();
-          loadShirt(tshirts[tshirtId].back_src);
           tempFrontData = JSON.stringify(canvas);
-
+          loadShirtOnCreate(tshirts[tshirtId].back_src);
+          
           canvas.clear();
           loadExistingData(checkBackgroundImage(tempBackData, tempFrontData));
         } else {
           back_canvas = jQuery.extend(true, {}, canvas);
           enableItemsOnFrontView();
-          loadShirt(tshirts[tshirtId].front_src);
           tempBackData = JSON.stringify(canvas);
+          loadShirtOnCreate(tshirts[tshirtId].front_src);
 
           canvas.clear();
           loadExistingData(tempFrontData);
@@ -381,6 +369,7 @@ $(document).ready(function() {
 
     $(".clearfix button,a").tooltip();
   });//doc ready
+
 
   function getRandomNum(min, max) {
     return Math.random() * (max - min) + min;
@@ -424,6 +413,15 @@ $(document).ready(function() {
     if (activeObject && activeObject.type === 'image') {
       activeObject.filters[2] =  new fabric.Image.filters.RemoveWhite({hreshold: 100, distance: 10});//0-255, 0-255
       activeObject.applyFilters(canvas.renderAll.bind(canvas));
+    }
+  }
+
+  /*
+  * Load shirt on flip only if on create page
+  */
+  function loadShirtOnCreate(src){
+    if (window.location.href.indexOf("/create") > -1){
+      loadShirt(src)
     }
   }
 
