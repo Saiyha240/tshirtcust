@@ -53,6 +53,7 @@ Route::group( [ 'middleware' => 'auth' ], function () {
 	Route::get( '/orders/{order}', [ 'uses' => 'OrderController@show' ] );
 
 	Route::resource( 'fileentries', 'FileEntryController' );
+	Route::get('fileentries/images', ['uses' => 'FileEntryController@usableImages'] );
 
 	Route::group( [ 'prefix' => 'api' ], function () {
 		Route::get( 'usableImages', ['uses' => "ApiController@getUsableImages"]);

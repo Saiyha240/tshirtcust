@@ -26,7 +26,10 @@ class FileEntryController extends Controller {
 
 	}
 
-	public function destroy( $id ) {
+	public function usableImages(){
+		$images = Auth::user()->fileentries()->usableImages()->get();
 
+		return view();
 	}
+
 }

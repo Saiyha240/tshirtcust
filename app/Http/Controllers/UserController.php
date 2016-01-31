@@ -9,100 +9,51 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Redirect;
 
-class UserController extends Controller
-{
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
+class UserController extends Controller {
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+	public function index() {
+		//
+	}
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+	public function create() {
+		//
+	}
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
+	public function store( Request $request ) {
+		//
+	}
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-        $user = User::find($id);
+	public function show( $id ) {
+		//
+	}
 
-        return view('user.edit')
-                ->with('user', $user);
-    }
+	public function edit( $id ) {
+		//
+		$user = User::find( $id );
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-        $user = User::find($id);
+		return view( 'user.edit' )
+			->with( 'user', $user );
+	}
 
-        $user->update($request->all());
+	public function update( Request $request, $id ) {
+		//
+		$user = User::find( $id );
 
-        return Redirect::action('AdminController@users')
-                            ->with('f_message', 'Successfully updated user ' . $user->username)
-                            ->with('f_type', 'alert-success');
-    }
+		$user->update( $request->all() );
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-        $user = User::find($id);
+		return Redirect::action( 'AdminController@users' )
+		               ->with( 'f_message', 'Successfully updated user ' . $user->username )
+		               ->with( 'f_type', 'alert-success' );
+	}
 
-        if( User::destroy($id) > 0 )
-        {
-            return Redirect::action("AdminController@users")
-                            ->with('f_message', 'Successfully deleted user ' . $user->username)
-                            ->with('f_type', 'alert-success');
-        }
-    }
+	public function destroy( $id ) {
+		//
+		$user = User::find( $id );
+
+		if ( User::destroy( $id ) > 0 ) {
+			return Redirect::action( "AdminController@users" )
+			               ->with( 'f_message', 'Successfully deleted user ' . $user->username )
+			               ->with( 'f_type', 'alert-success' );
+		}
+	}
 }
