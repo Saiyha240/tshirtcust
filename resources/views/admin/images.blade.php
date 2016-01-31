@@ -8,10 +8,6 @@
       <div class="col-md-4">
         <h4>Add New</h4>
           {!! Form::open(['action' => 'AdminController@imageStore', 'enctype' => 'multipart/form-data']) !!}
-            <div class="form-group">
-                <label for="front">Name</label>
-                <input type="text" name="custom_name" id="name" class="form-control" required/>
-            </div>
           	<div class="form-group">
                 <label for="images">File Input</label>
                 <input type="file" name="frontFile" id="images" required/>

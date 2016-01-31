@@ -10,11 +10,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 
 class FileEntryController extends Controller {
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return Response
-	 */
+	use FileHandlerTrait;
+
 	public function index() {
 		$entries = FileEntry::all();
 
@@ -22,9 +19,8 @@ class FileEntryController extends Controller {
 	}
 
 	public function store( FileEntryRequest $request ) {
-		$file        = $request->file( 'frontFile' );
-		$custom_name = $request->get( 'custom_name' );
-		$this->saveImage( $file, $custom_name );
+		$file = $request->file( 'frontFile' );
+		$this->saveImage( $file );
 
 		return redirect()->action( 'TshirtController@index' );
 

@@ -25,7 +25,6 @@ class FileEntryRequest extends Request
     {
         return [
             //
-            'custom_name' => 'required',
             'frontFile' => 'mimes:png|required|max:2048'
         ];
     }

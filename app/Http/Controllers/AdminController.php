@@ -22,9 +22,8 @@ class AdminController extends Controller {
 		//
 	}
 
-    public function reports()
-    {
-        $orders = Order::where('status', 1)->get();
+	public function reports() {
+		$orders = Order::where( 'status', 1 )->get();
 
 		return view( 'admin.reports', compact( 'orders' ) );
 	}
@@ -56,9 +55,8 @@ class AdminController extends Controller {
 
 	public function imageStore( FileEntryRequest $request ) {
 
-		$file        = $request->file( 'frontFile' );
-		$custom_name = $request->get( 'custom_name' );
-		$this->saveImage( $file, $custom_name );
+		$file = $request->file( 'frontFile' );
+		$this->saveImage( $file );
 
 		return redirect()->action( 'AdminController@images' );
 
