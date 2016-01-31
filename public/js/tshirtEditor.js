@@ -98,6 +98,7 @@ $(document).ready(function() {
   else{
     loadShirt(defaultTshirt);
   }
+  startLoadingImages();
 
   /*
   * Controls section
@@ -141,7 +142,7 @@ $(document).ready(function() {
     }
   });
 
-  $(".img-polaroid").click(function(e){
+  $('.images-container').on('click', '.img-polaroid', function(e) {
     var el = e.target;
     /*temp code*/
     var offset = 50;
@@ -326,7 +327,7 @@ $(document).ready(function() {
           disableItemsOnBackView();
           tempFrontData = JSON.stringify(canvas);
           loadShirtOnCreate(tshirts[tshirtId].back_src);
-          
+
           canvas.clear();
           loadExistingData(checkBackgroundImage(tempBackData, tempFrontData));
         } else {
@@ -369,7 +370,6 @@ $(document).ready(function() {
 
     $(".clearfix button,a").tooltip();
   });//doc ready
-
 
   function getRandomNum(min, max) {
     return Math.random() * (max - min) + min;
@@ -457,6 +457,28 @@ $(document).ready(function() {
     canvas.setBackgroundImage(baseDir + src, canvas.renderAll.bind(canvas));
   }
 
+  function startLoadingImages(){
+    $.ajax({
+      url: "/api/usableImages",
+      type: "GET",
+      success: function(obj){
+          loadImages(obj);
+      },
+      error: function (xhr, ajaxOptions, thrownError) {
+           console.log(xhr.status);
+           console.log(xhr.responseText);
+           console.log(thrownError);
+       }
+    });
+  }
+
+  function loadImages(obj){
+    $.each(obj, function(i, item) {
+        $('.images-container').append("<img class='img-polaroid img-sticker' src='"+baseDir+"/img/uploads/"+obj[i].filename+"'>");
+    })
+    arrangeImages();
+  }
+
   function changeBackgroundColor(color){
     canvas.backgroundColor = color;
     canvas.renderAll();
@@ -480,4 +502,22 @@ $(document).ready(function() {
     $("#shirtTypes").prop('disabled', false);
     $("#save-tshirt").prop('disabled', false);
     $("#save-tshirt").attr('title', 'Create');
+  }
+
+  function arrangeImages(){
+    IMAGE_DEFAULT_WIDTH = 100;
+    IMAGE_DEFAULT_HEIGHT =  240;
+
+    $("div#avatarlist").each(function(){
+     var img_num = $(this).find(".images-container img").length;
+     var container_width = (IMAGE_DEFAULT_WIDTH * img_num)+50;
+
+     if(img_num>3){
+       container_width = container_width/2;
+     }
+     else{
+        $(this).css("height", (IMAGE_DEFAULT_HEIGHT/2));
+     }
+     $(this).find(".images-container").css("width", (container_width));
+    })
   }

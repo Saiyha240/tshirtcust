@@ -5,7 +5,6 @@
     <div class="card-sm bg-primary">
       <span class="glyphicon glyphicon-user"></span>
       <div class="card-content">
-          <div class="card-number">23</div>
           <div class="card-text">Users</div>
       </div>
     </div>

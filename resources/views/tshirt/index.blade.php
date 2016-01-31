@@ -11,7 +11,9 @@
                 <th class="td-thumbnail">Back</th>
                 <th>Name</th>
                 <th>Edit</th>
-                <th>Add to cart</th>
+                @if( !Auth::user()->isAdmin() )
+                  <th>Add to cart</th>
+                @endif
                 <th>Remove</th>
             </tr>
         </thead>
@@ -35,11 +37,13 @@
                     <td>
                         <a href="{{ URL::route('tshirts.edit', ['id' => $tshirt->id]) }}"><button class="btn btn-primary"><i class="fa fa-pencil-square-o"></i> Edit</button></a>
                     </td>
-                    <td>
-                        {!! Form::open(['route' => ['cart.addItem', $tshirt->id], 'class' => 'form-inline']) !!}
-                            {!! Form::button('<i class="fa fa-cart-plus"></i> Add to Cart', ['class'=>'btn btn-success', 'type'=>'submit']) !!}
-                        {!! Form::close() !!}
-                    </td>
+                    @if( !Auth::user()->isAdmin() )
+                      <td>
+                          {!! Form::open(['route' => ['cart.addItem', $tshirt->id], 'class' => 'form-inline']) !!}
+                              {!! Form::button('<i class="fa fa-cart-plus"></i> Add to Cart', ['class'=>'btn btn-success', 'type'=>'submit']) !!}
+                          {!! Form::close() !!}
+                      </td>
+                    @endif
                     <td>
                         {!! Form::open(['route' => ['tshirts.destroy', $tshirt->id], 'method' => 'delete']) !!}
                             {!! Form::submit('Delete', ['class'=>'btn btn-danger']) !!}

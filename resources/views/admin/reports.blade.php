@@ -5,7 +5,6 @@
       <div class="card-sm bg-primary">
         <span class="glyphicon glyphicon-usd"></span>
         <div class="card-content">
-            <div class="card-number">Php 2300</div>
             <div class="card-text">Sales</div>
         </div>
       </div>

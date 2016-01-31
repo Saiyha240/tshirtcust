@@ -11,7 +11,7 @@
           	<div class="form-group">
                 <label for="images">File Input</label>
                 <input type="file" name="frontFile" id="images" required/>
-                <p class="help-block">Images should be in PNG format.</p>
+                <p class="help-block">Images should be in PNG/JPG format.</p>
             </div>
             <input type="submit" class="btn btn-default btn-sm" value="Upload Image">
           {!! Form::close() !!}
@@ -24,15 +24,13 @@
                   <td>Image</td>
                   <td>Name</td>
                   <td>Filename</td>
-                  <td>Remove</td>
                 </tr>
             </thead>
             <tbody>
-                <!-- Sample data -->
                 @foreach($entries as $entry)
                     <tr>
                         <td>{{ $entry->id }}</td>
-                        <td></td>
+                        <td><img src="../img/uploads/{{$entry->filename}}" class="img-sticker"></td>
                         <td>{{ $entry->filename }}</td>
                         <td>{{ $entry->original_filename }}</td>
                     </tr>

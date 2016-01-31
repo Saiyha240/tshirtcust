@@ -25,7 +25,7 @@ class FileEntryRequest extends Request
     {
         return [
             //
-            'frontFile' => 'mimes:png|required|max:2048'
+            'frontFile' => 'mimes:png,PNG,jpg,jpeg|required|max:2048'
         ];
     }
 }

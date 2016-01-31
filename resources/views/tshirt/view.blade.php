@@ -22,11 +22,13 @@
         <div class="col-md-4">
           <h3>{{$tshirt->name}}</h3>
           <br>
-          <div>
-            {!! Form::open(['route' => ['cart.addItem', $tshirt->id], 'class' => 'form-inline']) !!}
-                {!! Form::button('<i class="fa fa-cart-plus"></i> Add to Cart', ['class'=>'btn btn-success btn-block', 'type'=>'submit']) !!}
-            {!! Form::close() !!}
-          </div>
+          @if( !Auth::user()->isAdmin() )
+            <div>
+              {!! Form::open(['route' => ['cart.addItem', $tshirt->id], 'class' => 'form-inline']) !!}
+                  {!! Form::button('<i class="fa fa-cart-plus"></i> Add to Cart', ['class'=>'btn btn-success btn-block', 'type'=>'submit']) !!}
+              {!! Form::close() !!}
+            </div>
+          @endif
         </div>
     </div>
 </div>

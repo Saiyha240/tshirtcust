@@ -5,7 +5,6 @@
       <div class="card-sm bg-primary">
         <span class="glyphicon glyphicon-qrcode"></span>
         <div class="card-content">
-            <div class="card-number">23</div>
             <div class="card-text">Pending orders</div>
         </div>
       </div>
