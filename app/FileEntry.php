@@ -14,7 +14,7 @@ class FileEntry extends Model {
 		return $this->belongsTo( 'user' );
 	}
 
-	public function scopeUsableImages( $query ) {
-		return $query->whereIn( 'user_id', [ 1, Auth::user()->id ] );
+	public function scopeUsableImages( $query, $user_id ) {
+		return $query->whereIn( 'user_id', [ 1, $user_id ] );
 	}
 }

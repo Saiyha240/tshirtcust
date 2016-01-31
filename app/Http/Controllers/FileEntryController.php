@@ -7,7 +7,6 @@ use App\Http\Requests\FileEntryRequest;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Storage;
 
 class FileEntryController extends Controller {
 	use FileHandlerTrait;
