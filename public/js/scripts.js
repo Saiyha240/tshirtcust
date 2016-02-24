@@ -53,9 +53,11 @@ $(document).ready(function(){
   }
 
   function updateGross(price, quantity){
-    var mygross;
+    var mygross,
+        discount = 1;
+
     if(quantity != ""){
-      mygross = parseInt(price) * parseInt(quantity);
+      mygross = parseInt(price) * parseInt(quantity) * calculateDiscount(quantity);
     }
     else{
       mygross = price;
@@ -90,5 +92,19 @@ $(document).ready(function(){
 
   function enableCheckout(enabled){
       $('#checkout').prop('disabled', enabled);
+  }
+
+  function calculateDiscount(quantity){
+    var discount = 1;
+
+    if ( quantity >= 50 ) {
+      discount = 0.7;
+    } else if ( quantity >= 24 ) {
+      discount = 0.8;
+    } else if ( quantity >= 12 ) {
+      discount = 0.9;
+    }
+
+    return discount;
   }
 });

@@ -42,12 +42,13 @@ trait PaypalServiceTrait {
 		$item_list = new ItemList();
 
 		foreach ( $user_items as $item ) {
+			$price = $this->calculateDiscountedPrice($item[ "quantity" ], $item[ "price" ]);
 
 			$paypalItem = new Item();
 			$paypalItem->setName( $item[ "name" ] )
 			           ->setSku( $item[ "sku" ] )
 			           ->setQuantity( $item[ "quantity" ] )
-			           ->setPrice( $item[ "price" ] )
+			           ->setPrice( $price )
 			           ->setCurrency( 'PHP' );
 
 			$item_list->addItem( $paypalItem );
@@ -159,7 +160,7 @@ trait PaypalServiceTrait {
 		$price = $this->getSystemPrice();
 		collect( $cart_items )->each( function ( $item ) use ( $order, $price ) {
 			$order->tshirts()->attach( $item->tshirt_id, [
-				'price'    => $price,
+				'price'    => $this->calculateDiscountedPrice($item->quantity, $price),
 				'quantity' => $item->quantity
 			] );
 		} );
@@ -167,5 +168,19 @@ trait PaypalServiceTrait {
 
 	private function deleteCartItems() {
 		return Auth::user()->cartItems()->delete();
+	}
+
+	private function calculateDiscountedPrice($quantity, $price) {
+		$discount = 1;
+
+		if ( $quantity >= 50 ) {
+			$discount = 0.7;
+		} else if ( $quantity >= 24 ) {
+			$discount = 0.8;
+		} else if ( $quantity >= 12 ) {
+			$discount = 0.9;
+		}
+
+		return $price * $discount;
 	}
 }
