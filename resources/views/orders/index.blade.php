@@ -28,9 +28,11 @@
                           </a>
                         </td>
                         @if( $order->status == 0 )
-                        <td><span class="label label-info">Ongoing</span></td>
+                        <td><span class="label label-info">Recieved</span></td>
+                        @elseif( $order->status == 1 )
+                        <td><span class="label label-info">Processing</span></td>
                         @else
-                        <td><span class="label label-success">Completed</span></td>
+                        <td><span class="label label-success">Deliver</span></td>
                         @endif
                     </tr>
                 @endforeach
