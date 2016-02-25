@@ -292,3 +292,11 @@ td span.label{
   width: 330px;
   height: 430px;
 }
+
+/*
+* Disabled section style
+*/
+.disabled-section {
+    pointer-events: none;
+    opacity: 0.4;
+}

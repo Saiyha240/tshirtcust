@@ -16,7 +16,7 @@
           </select>
         </div>
         <div class="well">
-          <ul class="list-inline">
+          <ul class="list-inline" id="colorSelector">
             <li class="color-preview" title="White" style="background-color:#ffffff;"></li>
             <li class="color-preview" title="Dark Heather" style="background-color:#616161;"></li>
             <li class="color-preview" title="Gray" style="background-color:#f0f0f0;"></li>

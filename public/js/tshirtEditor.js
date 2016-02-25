@@ -494,6 +494,7 @@ $(document).ready(function() {
     $('#flip').attr('data-original-title', 'Show Front View');
     $("#shirtTypes").prop('disabled', true);
     $("#save-tshirt").prop('disabled', true);
+    $("#colorSelector").addClass("disabled-section");
     $("#save-tshirt").attr('title', 'Disabled when on back view. Rotate to save');
   }
 
@@ -501,6 +502,7 @@ $(document).ready(function() {
     $('#flip').attr('data-original-title', 'Show Back View');
     $("#shirtTypes").prop('disabled', false);
     $("#save-tshirt").prop('disabled', false);
+    $("#colorSelector").removeClass("disabled-section");
     $("#save-tshirt").attr('title', 'Create');
   }
 
