@@ -23,7 +23,7 @@ class AdminController extends Controller {
 	}
 
 	public function reports() {
-		$orders = Order::where( 'status', 1 )->get();
+		$orders = Order::where( 'status', 2 )->get();
 
 		return view( 'admin.reports', compact( 'orders' ) );
 	}
@@ -48,7 +48,7 @@ class AdminController extends Controller {
 	}
 
 	public function orders() {
-		$orders = Order::where( 'status', 0 )->get();
+		$orders = Order::whereIn( 'status', [0,1] )->get();
 
 		return view( 'admin.orders', compact( 'orders' ) );
 	}

@@ -37,11 +37,10 @@
                       <button class="btn btn-primary btn-xs">View Items</button>
                   </a>
               </td>
-              @if( $order->status == 2 )
-              <td>Done</td>
-                <td><span class="label label-success">Delivered</span></td>
-              @else
-              <td>Pending</td>
+              @if( $order->status == 0 )
+              <td><span class="label label-info">Pending</span></td>
+              @elseif( $order->status == 1 )
+              <td><span class="label label-info">Processing</span></td>
               @endif
               <td>
                 <a href="{{ URL::action('OrderController@updateProcessing', $order->id) }}">
@@ -51,7 +50,6 @@
                   <button class="btn btn-primary">Set to Delivery</button>
                 </a>
               </td>
-
             </tr>
             @endforeach
         </tbody>
