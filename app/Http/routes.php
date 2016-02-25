@@ -51,6 +51,8 @@ Route::group( [ 'middleware' => 'auth' ], function () {
 
 	Route::get( '/orders', [ 'uses' => 'OrderController@index' ] );
 	Route::get( '/orders/{order}', [ 'uses' => 'OrderController@show' ] );
+	Route::get( '/orders/{order}/updateProcessing', [ 'uses' => 'OrderController@updateProcessing' ] );
+	Route::get( '/orders/{order}/updateDelivery', [ 'uses' => 'OrderController@updateDelivery' ] );
 
 	Route::resource( 'fileentries', 'FileEntryController' );
 	Route::get('fileentries/images', ['uses' => 'FileEntryController@usableImages'] );

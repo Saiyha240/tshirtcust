@@ -30,7 +30,7 @@ class OrderController extends Controller {
 		return view( 'orders.items', compact( 'tshirts', 'total' ) );
 	}
 
-	public function update($id){
+	public function updateProcessing($id){
 		$order = Order::find( $id );
 
 		$order->status = 1;
@@ -39,5 +39,16 @@ class OrderController extends Controller {
 		return Redirect::action( "AdminController@orders" )
 									 ->with('f_message', 'Successfully updated status of Order id: ' . $order->id)
 									 ->with('f_type', 'alert-success');
+	}
+
+	public function updateDelivery($id){
+		$order = Order::find( $id );
+
+		$order->status = 2;
+		$order->save();
+
+		return Redirect::action( "AdminController@orders" )
+		               ->with('f_message', 'Successfully updated status of Order id: ' . $order->id)
+		               ->with('f_type', 'alert-success');
 	}
 }
