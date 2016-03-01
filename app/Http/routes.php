@@ -69,3 +69,7 @@ Route::get( '/', function () {
 Route::get( '/about', function () {
 	return view( 'about.about' );
 } );
+
+Route::get( '/modeofpayment', function () {
+    return view( 'modeofpayment.modeop' );
+} );
