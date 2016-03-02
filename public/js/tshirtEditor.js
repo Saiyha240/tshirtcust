@@ -5,6 +5,7 @@ var back_canvas_data;
 var back_canvas_image;
 var tempFrontData;
 var tempBackData;
+var shirtColor;
 
 //Tshirts
 var tshirts = [
@@ -111,8 +112,8 @@ $(document).ready(function() {
   });
 
   $('.color-preview').click(function(){
-    var color = $(this).css("background-color");
-    changeBackgroundColor(color);
+    shirtColor = $(this).css("background-color");
+    changeBackgroundColor(shirtColor);
   });
 
   $("#add-text").click(function() {
@@ -330,6 +331,7 @@ $(document).ready(function() {
 
           canvas.clear();
           loadExistingData(checkBackgroundImage(tempBackData, tempFrontData));
+
         } else {
           back_canvas = jQuery.extend(true, {}, canvas);
           enableItemsOnFrontView();
@@ -341,7 +343,9 @@ $(document).ready(function() {
         }
         setTimeout(function() {
           canvas.calcOffset();
-        },200);
+          updateBackgroundColor();
+      },200);
+
       });
 
     /*
@@ -423,6 +427,10 @@ $(document).ready(function() {
     if (window.location.href.indexOf("/create") > -1){
       loadShirt(src)
     }
+  }
+
+  function updateBackgroundColor(){
+      changeBackgroundColor(shirtColor);
   }
 
   /*

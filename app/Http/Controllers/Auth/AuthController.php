@@ -51,7 +51,8 @@ class AuthController extends Controller
 			'email' => 'required|email|max:255|unique:users',
 			'password' => 'required|confirmed|min:6',
 			'gender' => 'required|in:M,F',
-			'contact_number' => 'required|max:60'
+			'contact_number' => 'required|max:60',
+			'address' => 'required'
 		]);
 	}
 
@@ -69,6 +70,7 @@ class AuthController extends Controller
 			'gender' => $data['gender'],
 			'password' => bcrypt($data['password']),
 			'contact_number' => $data['contact_number'],
+			'address' => $data['address']
 		]);
 
 		$cart = new Cart();

@@ -11,7 +11,7 @@
                                  class="img-responsive img-thumbnail">
 
                             <div class="details">
-                                <span class="title">{{$tshirt->name}}</span><br>
+                                <span class="title"><a href="/tshirts/{{$tshirt->id}}">{{$tshirt->name}}</a></span><br>
                                 <span id="quantity">{{$tshirt->pivot->quantity}}</span><br>
                             </div>
                             <div class="pricing">

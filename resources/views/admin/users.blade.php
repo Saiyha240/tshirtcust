@@ -19,6 +19,7 @@
               <td>Email</td>
               <td>Phone Number</td>
               <td>Gender</td>
+              <td>Address</td>
               <td>Action</td>
           </tr>
       </thead>
@@ -30,6 +31,7 @@
                   <td>{{ $user->email }}</td>
                   <td>{{ $user->contact_number }} </td>
                   <td>{{ $user->gender }}</td>
+                  <td>{{ $user->address }}</td>
                   <td>
                       {!! Form::open(['action' => ['UserController@destroy', $user->id], 'method' => 'delete']) !!}
                           {!! Form::submit('Delete', ['class'=>'btn btn-danger btn-sm']) !!}

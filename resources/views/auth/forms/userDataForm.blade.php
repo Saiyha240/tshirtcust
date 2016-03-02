@@ -88,6 +88,20 @@
     </div>
 </div>
 <div class="form-group">
+   {!! Form::label('Address', null, array('for' => 'address', 'class' => 'col-md-4 control-label')) !!}
+   <div class="col-md-4">
+       {!! Form::text('address', null,
+                array(
+                   'required',
+                   'id' => 'address',
+                   'class' => 'form-control input-md',
+                   'placeholder' => 'Address'
+               )
+           )
+       !!}
+   </div>
+</div>
+<div class="form-group">
     {!! Form::label('', null, array('for' => 'registerBtn', 'class' => 'col-md-4 control-label')) !!}
     <div class="col-md-4">
         {!! Form::submit($submitText,
