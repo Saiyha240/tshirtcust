@@ -7,6 +7,7 @@ use App\Http\Requests\FileEntryRequest;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\File;
 
 class FileEntryController extends Controller {
 	use FileHandlerTrait;
@@ -29,6 +30,12 @@ class FileEntryController extends Controller {
 		$images = Auth::user()->fileentries()->usableImages()->get();
 
 		return view();
+	}
+
+	public function destroy($id){
+		$file = FileEntry::destroy($id);
+
+		return redirect()->action( 'TshirtController@index' );
 	}
 
 }
